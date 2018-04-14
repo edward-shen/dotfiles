@@ -67,7 +67,8 @@ chmod 700 $HOME/.gnupg
 CORE="linux-headers acpi ntp"
 AUDIO="pulseaudio pulseaudio-alsa alsa-utils pavucontrol pulseaudio-bluetooth \
 pulseaudio-jack qjackctl"
-TOOLS="powertop nmap neofetch htop"
+TOOLS="powertop nmap neofetch htop base-devel"
+TEX="pandoc texlive-most"
 FISH="fish"
 FUN="cowsay fortune-mod wtf"
 
@@ -79,15 +80,16 @@ DESKTOP="i3-gaps thunar libreoffice dunst rofi scrot mpv mpv-mpris kitty"
 RICE="compton polybar betterlockscreen"
 WEB="chromium firefox qbittorrent"
 MESSAGING="discord slack-desktop"
+DEV="code intellij-idea-ue-bundled-jre"
 
 # Languages
-JAVA="openjdk8-doc openjdk8-src jdk8-openjdk intellij-idea-ue-bundled-jre"
+JAVA="openjdk8-doc openjdk8-src jdk8-openjdk"
 JAVASCRIPT="nodejs yarn"
 PYTHON="python"
 
 # Shorthands
-CLIPKG="$CORE $AUDIO $TOOLS $FISH $FUN"
-GUIPKG="$XORG $DESKTOP $RICE $WEB $MESSAGING"
+CLIPKG="$CORE $AUDIO $TOOLS $FISH $FUN $TEX"
+GUIPKG="$XORG $DESKTOP $RICE $WEB $MESSAGING $DEV"
 LANGS="$JAVA $JAVASCRIPT $PYTHON"
 
 trizen -Syyu --needed --noconfirm --noedit $CLIPKG $GUIPKG $LANGS
@@ -105,3 +107,19 @@ ln -s /usr/lib/mpv/mpris.so $HOME/.config/mpv/scripts/mpris.so
 # Set root and current users to use fish as shell
 sudo chsh $USER -s `which fish`
 sudo chsh root -s `which fish`
+
+
+
+###############################################################################
+# SECTION 4                                                                   #
+# ----------------------------------------------------------------------------#
+# Services                                                                    #
+###############################################################################
+
+# Networking
+sudo systemctl enable NetworkManager
+sudo systemctl enable NetworkManager-dispatcher
+sudo systemctl enable ntpd
+
+# Mouse support in tty (gpm)
+sudo systemctl enable gpm
