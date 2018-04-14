@@ -35,7 +35,8 @@ if [! -f /usr/bin/trizen ]; then
   rm -rf trizen
 fi
 
-echo "Reflection in progress; finding best mirror..."
+# Update our mirrors to find the fastest one
+echo "Reflection in progress..."
 sudo reflector \
   --latest 5 \
   --protocol http \
@@ -48,3 +49,59 @@ sudo reflector \
 # ----------------------------------------------------------------------------#
 # User home directories                                                       #
 ###############################################################################
+
+mkdir -p $HOME/Downloads
+mkdir -p $HOME/Documents
+mkdir -p $HOME/.config
+mkdir -p $HOME/.gnupg
+chmod 700 $HOME/.gnupg
+
+
+###############################################################################
+# SECTION 2                                                                   #
+# ----------------------------------------------------------------------------#
+# Packages to install                                                         #
+###############################################################################
+
+# CLI Packages
+CORE="linux-headers acpi ntp"
+AUDIO="pulseaudio pulseaudio-alsa alsa-utils pavucontrol pulseaudio-bluetooth \
+pulseaudio-jack qjackctl"
+TOOLS="powertop nmap neofetch htop"
+SHELL="fish"
+FUN="cowsay fortune-mod wtf"
+
+# GUI Packages
+XORG="xorg-server xorg-xinit light xorg-xkill xorg-xinput xorg-xmodmap xterm \
+feh xss-lock-git xorg-xset xbindkeys wmctrl xdotool xdg-utils \
+unclutter-xfixes-git perl-file-mimeinfo"
+DESKTOP="i3-gaps thunar libreoffice dunst rofi scrot mpv mpv-mpris kitty"
+RICE="compton polybar betterlockscreen"
+WEB="chromium firefox qbittorrent"
+MESSAGING="discord slack-desktop"
+
+# Languages
+JAVA="openjdk8-doc openjdk8-src jdk8-openjdk intellij-idea-ue-bundled-jre"
+JAVASCRIPT="nodejs yarn"
+PYTHON="python"
+
+# Shorthands
+CLIPKG="$CORE $AUDIO $TOOLS $SHELL $FUN"
+GUIPKG="$XORG $DESKTOP $RICE $WEB $MESSAGING"
+LANGS="$JAVA $JAVASCRIPT $PYTHON"
+
+trizen -Syyu --needed --noconfirm --noedit $CLIPKG $GUIPKG $LANGS
+
+###############################################################################
+# SECTION 3                                                                   #
+# ----------------------------------------------------------------------------#
+# Configuration                                                               #
+###############################################################################
+
+# mpv-mpris
+mkdir -p $HOME/.config/mpv/scripts
+ln -s /usr/lib/mpv/mpris.so $HOME/.config/mpv/scripts/mpris.so
+
+# Set root and current users to use fish as shell
+sudo chsh $USER -s `which fish`
+sudo chsh root -s `which fish`
