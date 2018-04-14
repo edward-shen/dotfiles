@@ -68,7 +68,7 @@ CORE="linux-headers acpi ntp"
 AUDIO="pulseaudio pulseaudio-alsa alsa-utils pavucontrol pulseaudio-bluetooth \
 pulseaudio-jack qjackctl"
 TOOLS="powertop nmap neofetch htop"
-SHELL="fish"
+FISH="fish"
 FUN="cowsay fortune-mod wtf"
 
 # GUI Packages
@@ -86,7 +86,7 @@ JAVASCRIPT="nodejs yarn"
 PYTHON="python"
 
 # Shorthands
-CLIPKG="$CORE $AUDIO $TOOLS $SHELL $FUN"
+CLIPKG="$CORE $AUDIO $TOOLS $FISH $FUN"
 GUIPKG="$XORG $DESKTOP $RICE $WEB $MESSAGING"
 LANGS="$JAVA $JAVASCRIPT $PYTHON"
 
