@@ -78,16 +78,18 @@ chmod 700 $HOME/.gnupg
 # CLI Packages
 CORE="linux-headers acpi ntp"
 AUDIO="pulseaudio pulseaudio-alsa alsa-utils pavucontrol pulseaudio-bluetooth \
-pulseaudio-jack qjackctl"
+  pulseaudio-jack qjackctl"
 TOOLS="powertop nmap ntop neofetch htop base-devel"
 TEX="pandoc texlive-most"
 FISH="fish"
 FUN="cowsay fortune-mod wtf"
 
 # GUI Packages
+FONTS="ttf-ms-fonts ttf-opensans ttf-roboto noto-fonts powerline-fonts-git \
+  ttf-font-awesome-4 ttf-fira-code ttf-dejavu noto-fonts-emoji"
 XORG="xorg-server xorg-xinit light xorg-xkill xorg-xinput xorg-xmodmap xterm \
-feh xss-lock-git xorg-xset xbindkeys wmctrl xdotool xdg-utils \
-unclutter-xfixes-git perl-file-mimeinfo"
+  feh xss-lock-git xorg-xset xbindkeys wmctrl xdotool xdg-utils \
+  unclutter-xfixes-git perl-file-mimeinfo"
 DESKTOP="i3-gaps thunar libreoffice dunst rofi scrot mpv mpv-mpris kitty"
 RICE="compton polybar betterlockscreen"
 WEB="chromium firefox qbittorrent"
@@ -101,7 +103,7 @@ PYTHON="python"
 
 # Shorthands
 CLIPKG="$CORE $AUDIO $TOOLS $FISH $FUN $TEX"
-GUIPKG="$XORG $DESKTOP $RICE $WEB $MESSAGING $DEV"
+GUIPKG="$FONTS $XORG $DESKTOP $RICE $WEB $MESSAGING $DEV"
 LANGS="$JAVA $JAVASCRIPT $PYTHON"
 
 trizen -Syyu --needed --noconfirm --noedit $CLIPKG $GUIPKG $LANGS
