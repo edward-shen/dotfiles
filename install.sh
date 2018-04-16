@@ -27,7 +27,7 @@ fi
 yes | sudo pacman -Syyu --needed git reflector
 
 # Install trizen if not already installed
-if [! -f /usr/bin/trizen ]; then
+if [ ! -f /usr/bin/trizen ]; then
   git clone https://aur.archlinux.org/trizen.git
   pushd trizen
   yes | makepkg -sri
@@ -67,7 +67,7 @@ chmod 700 $HOME/.gnupg
 CORE="linux-headers acpi ntp"
 AUDIO="pulseaudio pulseaudio-alsa alsa-utils pavucontrol pulseaudio-bluetooth \
 pulseaudio-jack qjackctl"
-TOOLS="powertop nmap neofetch htop base-devel"
+TOOLS="powertop nmap ntop neofetch htop base-devel"
 TEX="pandoc texlive-most"
 FISH="fish"
 FUN="cowsay fortune-mod wtf"
@@ -107,8 +107,6 @@ ln -s /usr/lib/mpv/mpris.so $HOME/.config/mpv/scripts/mpris.so
 # Set root and current users to use fish as shell
 sudo chsh $USER -s `which fish`
 sudo chsh root -s `which fish`
-
-
 
 ###############################################################################
 # SECTION 4                                                                   #
