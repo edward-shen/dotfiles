@@ -25,7 +25,7 @@ fi
 
 # Force refresh of dbs and install git and reflector, if not present.
 # Also install base-devel, which is needed for trizen.
-yes | sudo pacman -Syyu --needed git reflector base-devel
+yes "" | sudo pacman -Syyu --needed git reflector base-devel
 
 # Install trizen if not already installed
 if [ ! -f /usr/bin/trizen ]; then
