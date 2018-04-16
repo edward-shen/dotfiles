@@ -47,7 +47,7 @@ sudo reflector \
   --save /etc/pacman.d/mirrorlist
 
 # Remove extraneous file.
-rm -f /etc/pacman.d/mirrorlist.pacnew
+sudo rm -f /etc/pacman.d/mirrorlist.pacnew
 
 ###############################################################################
 # SECTION 1                                                                   #
