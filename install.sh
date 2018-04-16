@@ -9,7 +9,7 @@
 # Meta-script initialization                                                  #
 ###############################################################################
 
-# Fail immediately if something goes wrong
+# Fail immediately if something goes wrong.
 set -e
 
 # Don't run as root!
@@ -36,7 +36,11 @@ if [ ! -f /usr/bin/trizen ]; then
   rm -rf trizen
 fi
 
-# Update our mirrors to find the fastest one
+# We got a lot of things to install, lets install perl-json-xs to make things
+# a little faster.
+trizen -Syyu --needed --noconfirm --noedit perl-json-xs
+
+# Update our mirrors to find the fastest one.
 echo "Reflection in progress..."
 sudo reflector \
   --age 24 \
@@ -56,11 +60,14 @@ sudo rm -f /etc/pacman.d/mirrorlist.pacnew
 ###############################################################################
 
 mkdir -p $HOME/Downloads
-mkdir -p $HOME/Documents
+mkdir -p $HOME/Documents/repos
+mkdir -p $HOME/Documents/school
+
 mkdir -p $HOME/.config
 mkdir -p $HOME/.gnupg
 chmod 700 $HOME/.gnupg
 
+# TODO complete
 
 ###############################################################################
 # SECTION 2                                                                   #
