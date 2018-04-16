@@ -63,6 +63,10 @@ mkdir -p $HOME/Downloads
 mkdir -p $HOME/Documents/repos
 mkdir -p $HOME/Documents/school
 
+# Some soft links so I can just cd from my home directory
+ln -s $HOME/Documents/repos repos
+ln -s $HOME/Documents/school
+
 mkdir -p $HOME/.config
 mkdir -p $HOME/.gnupg
 chmod 700 $HOME/.gnupg
@@ -93,7 +97,9 @@ XORG="xorg-server xorg-xinit light xorg-xkill xorg-xinput xorg-xmodmap xterm \
 DESKTOP="i3-gaps thunar libreoffice dunst rofi scrot mpv mpv-mpris kitty"
 RICE="compton polybar betterlockscreen"
 WEB="chromium firefox qbittorrent"
-MESSAGING="discord slack-desktop"
+# Discord is disabled because of key fiasco
+# DISCORD_DEPS="wget xdg-utils"
+MESSAGING="slack-desktop" # discord 
 DEV="code intellij-idea-ue-bundled-jre"
 
 # Languages
@@ -101,9 +107,11 @@ JAVA="openjdk8-doc openjdk8-src jdk8-openjdk"
 JAVASCRIPT="nodejs yarn"
 PYTHON="python"
 
+# Because the discord maintainer is u
+
 # Shorthands
 CLIPKG="$CORE $AUDIO $TOOLS $FISH $FUN $TEX"
-GUIPKG="$FONTS $XORG $DESKTOP $RICE $WEB $MESSAGING $DEV"
+GUIPKG="$FONTS $XORG $DESKTOP $RICE $WEB $DISCORD_DEPS $MESSAGING $DEV"
 LANGS="$JAVA $JAVASCRIPT $PYTHON"
 
 trizen -Syyu --needed --noconfirm --noedit $CLIPKG $GUIPKG $LANGS
