@@ -39,12 +39,15 @@ fi
 # Update our mirrors to find the fastest one
 echo "Reflection in progress..."
 sudo reflector \
-  --age 24
+  --age 24 \
   --latest 5 \
   --protocol http \
   --protocol https \
   --sort rate \
   --save /etc/pacman.d/mirrorlist
+
+# Remove extraneous file.
+rm -f /etc/pacman.d/mirrorlist.pacnew
 
 ###############################################################################
 # SECTION 1                                                                   #
@@ -123,3 +126,5 @@ sudo systemctl enable ntpd
 
 # Mouse support in tty (gpm)
 sudo systemctl enable gpm
+
+# TODO: add in cron job for updating mirrors
