@@ -23,8 +23,9 @@ if [ "$(id -u)" == "0" ]; then
   exit 1
 fi
 
-# Force refresh of dbs and install git and reflector, if not present
-yes | sudo pacman -Syyu --needed git reflector
+# Force refresh of dbs and install git and reflector, if not present.
+# Also install base-devel, which is needed for trizen.
+yes | sudo pacman -Syyu --needed git reflector base-devel
 
 # Install trizen if not already installed
 if [ ! -f /usr/bin/trizen ]; then
@@ -38,6 +39,7 @@ fi
 # Update our mirrors to find the fastest one
 echo "Reflection in progress..."
 sudo reflector \
+  --age 24
   --latest 5 \
   --protocol http \
   --protocol https \
