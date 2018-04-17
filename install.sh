@@ -168,6 +168,7 @@ sudo systemctl enable gpm
 # Extra things                                                                #
 ###############################################################################
 
+echo
 echo "Do you want to try to install known-problematic packages?"
 echo "Packages include:"
 echo
@@ -180,6 +181,7 @@ select yn in "Yes" "No"; do
     esac
 done
 
+echo
 echo "Do you wish to install proprietary software?"
 echo "Packages include:"
 echo
