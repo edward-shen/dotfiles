@@ -12,6 +12,9 @@
 # Fail immediately if something goes wrong.
 set -e
 
+# Keep reference of time started
+START_TIME=$SECONDS
+
 # Don't run as root!
 if [ "$(id -u)" == "0" ]; then
   echo
@@ -208,3 +211,6 @@ select yn in "Yes" "No"; do
     esac
 done
 
+TIME_DIFF = $SECONDS - START_TIME
+
+echo "Total install time: $(($TIME_DIFF / 3600))hrs $((($TIME_DIFF / 60) % 60))min $(($TIME_DIFF % 60))sec"

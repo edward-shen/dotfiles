@@ -1,7 +1,7 @@
 # Personal dotfiles
 
 Yes. I've decided to make a public repository of my dotfiles. Yes, no one wants
-nor nqeeds to see it. I'm sorry. This is public so I can just clone from this
+nor needs to see it. I'm sorry. This is public so I can just clone from this
 repository without setting up anything else.
 
 ## Notable includes
@@ -33,7 +33,7 @@ The following configs will be prompted during the installation:
 - Install fun packages, e.g.:
   - cowsay
   - fortune
-   
+
 ## Additional information
 This was based on @kylesferrazza's dotfiles, which you can find [here][kyle].
 Thank you!
