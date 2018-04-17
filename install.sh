@@ -134,6 +134,9 @@ ln -s /usr/lib/mpv/mpris.so $HOME/.config/mpv/scripts/mpris.so
 sudo chsh $USER -s `which fish`
 sudo chsh root -s `which fish`
 
+# Generate SSH key
+echo -e "\n\n" | ssh-keygen
+
 ###############################################################################
 # SECTION 4                                                                   #
 # ----------------------------------------------------------------------------#
