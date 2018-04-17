@@ -88,7 +88,7 @@ chmod 700 $HOME/.gnupg
 CORE="linux-headers acpi ntp"
 AUDIO="pulseaudio pulseaudio-alsa alsa-utils pavucontrol pulseaudio-bluetooth \
   pulseaudio-jack qjackctl"
-TOOLS="powertop nmap ntop neofetch htop tree"
+TOOLS="powertop nmap neofetch htop tree"
 TEX="pandoc texlive-most"
 FISH="fish"
 FUN="cowsay fortune-mod wtf"
@@ -112,6 +112,7 @@ JAVASCRIPT="nodejs yarn"
 PYTHON="python"
 
 # Packages that often break; installed in section n+1
+# wget and xdg-utils are an opt (but not really) dep of discord.
 TRY_PKGS="code wget xdg-utils discord"
 
 # Packages that are proprietary; installed in section n+1
@@ -124,7 +125,8 @@ LANGS="$JAVA $JAVASCRIPT $PYTHON"
 
 # Installing most packages
 trizen -Syyu --needed --noconfirm --noedit $CLIPKG $GUIPKG $LANGS
-# Intellij is too large, clone into home dir instead
+# Intellij is too large, clean cache and clone into home dir instead
+trizen -Sc
 trizen -Syyu --needed --noconfirm --noedit --clone-dir=$HOME $INTELLIJ
 
 ###############################################################################
