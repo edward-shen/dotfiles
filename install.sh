@@ -88,6 +88,7 @@ chmod 700 $HOME/.gnupg
 CORE="linux-headers acpi ntp"
 AUDIO="pulseaudio pulseaudio-alsa alsa-utils pavucontrol pulseaudio-bluetooth \
   pulseaudio-jack qjackctl"
+NET="networkmanager networkmanager-openvpn network-manager-applet"
 TOOLS="powertop nmap neofetch htop tree"
 TEX="pandoc texlive-most"
 FISH="fish"
@@ -119,7 +120,7 @@ TRY_PKGS="code wget xdg-utils discord"
 PROPRIETARY="spotify"
 
 # Groups
-CLIPKG="$CORE $AUDIO $TOOLS $FISH $FUN $TEX"
+CLIPKG="$CORE $AUDIO $TOOLS $FISH $TEX $NET"
 GUIPKG="$FONTS $XORG $DESKTOP $RICE $WEB $DISCORD_DEPS $MESSAGING"
 LANGS="$JAVA $JAVASCRIPT $PYTHON"
 
@@ -190,6 +191,19 @@ echo
 select yn in "Yes" "No"; do
     case $yn in
         Yes ) trizen -Syyu --needed --noconfirm --noedit $PROPREITARY; break;;
+        No ) break;;
+    esac
+done
+
+echo
+echo "Do you wish to install fun software?"
+echo "Packages include:"
+echo
+echo "  $FUN"
+echo
+select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) trizen -Syyu --needed --noconfirm --noedit $FUN; break;;
         No ) break;;
     esac
 done
