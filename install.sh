@@ -23,6 +23,7 @@ if [ "$(id -u)" == "0" ]; then
   echo "For example, this is a standard single-user config:"
   echo
   echo "  useradd -m -g wheel edward"
+  echo "  passwd edward"
   echo
   exit 1
 fi
@@ -68,8 +69,8 @@ mkdir -p $HOME/Documents/repos
 mkdir -p $HOME/Documents/school
 
 # Some soft links so I can just cd from my home directory
-ln -s $HOME/Documents/repos repos
-ln -s $HOME/Documents/school
+ln -s $HOME/Documents/repos ..
+ln -s $HOME/Documents/school ..
 
 mkdir -p $HOME/.config
 mkdir -p $HOME/.gnupg
@@ -103,7 +104,7 @@ DESKTOP="i3-gaps thunar libreoffice dunst rofi scrot mpv mpv-mpris kitty \
 RICE="compton polybar betterlockscreen"
 WEB="chromium firefox qbittorrent"
 MESSAGING="slack-desktop" 
-DEV="intellij-idea-ue-bundled-jre"
+INTELLIj="intellij-idea-ue-bundled-jre"
 
 # Languages
 JAVA="openjdk8-doc openjdk8-src jdk8-openjdk"
@@ -122,12 +123,9 @@ GUIPKG="$FONTS $XORG $DESKTOP $RICE $WEB $DISCORD_DEPS $MESSAGING"
 LANGS="$JAVA $JAVASCRIPT $PYTHON"
 
 # Installing most packages
-# After every group, clean out /tmp to prevent failed installs due to full disc
-trizen -Syyuc --needed --noconfirm --noedit $CLIPKG 
-trizen -Syyuc --needed --noconfirm --noedit $GUIPKG
-trizen -Syyuc --needed --noconfirm --noedit $LANGS
-# Intellij effectively requires clean an empty /tmp folder
-trizen -Syyuc --needed --noconfirm --noedit $DEV
+trizen -Syyu --needed --noconfirm --noedit $CLIPKG $GUIPKG $LANGS
+# Intellij is too large, clone into home dir instead
+trizen -Syyu --needed --noconfirm --noedit --clone-dir=$HOME $INTELLIJ
 
 ###############################################################################
 # SECTION 3                                                                   #
