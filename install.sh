@@ -98,7 +98,8 @@ FONTS="ttf-ms-fonts ttf-opensans ttf-roboto noto-fonts powerline-fonts-git \
 XORG="xorg-server xorg-xinit light xorg-xkill xorg-xinput xorg-xmodmap xterm \
   feh xss-lock-git xorg-xset xbindkeys wmctrl xdotool xdg-utils \
   unclutter-xfixes-git perl-file-mimeinfo"
-DESKTOP="i3-gaps thunar libreoffice dunst rofi scrot mpv mpv-mpris kitty"
+DESKTOP="i3-gaps thunar libreoffice dunst rofi scrot mpv mpv-mpris kitty \
+  synergy"
 RICE="compton polybar betterlockscreen"
 WEB="chromium firefox qbittorrent"
 MESSAGING="slack-desktop" 
@@ -109,17 +110,25 @@ JAVA="openjdk8-doc openjdk8-src jdk8-openjdk"
 JAVASCRIPT="nodejs yarn"
 PYTHON="python"
 
-# Packages that often break
+# Packages that often break; installed in section n+1
 TRY_PKGS="code wget xdg-utils discord"
 
-# Shorthands
+# Packages that are proprietary; installed in section n+1
+PROPRIETARY="spotify"
+
+# Groups
 CLIPKG="$CORE $AUDIO $TOOLS $FISH $FUN $TEX"
-GUIPKG="$FONTS $XORG $DESKTOP $RICE $WEB $DISCORD_DEPS $MESSAGING $DEV"
+GUIPKG="$FONTS $XORG $DESKTOP $RICE $WEB $DISCORD_DEPS $MESSAGING"
 LANGS="$JAVA $JAVASCRIPT $PYTHON"
 
 # Installing most packages
-trizen -Syyu --needed --noconfirm --noedit $CLIPKG $GUIPKG $LANGS
-
+# After every group, clean out /tmp to prevent failed installs due to full disc
+trizen -Syyuc --needed --noconfirm --noedit $CLIPKG 
+trizen -Syyuc --needed --noconfirm --noedit $GUIPKG
+trizen -Syyuc --needed --noconfirm --noedit $LANGS
+# Intellij effectively requires clean an empty /tmp folder
+trizen -Syyuc --needed --noconfirm --noedit $DEV
+ 
 ###############################################################################
 # SECTION 3                                                                   #
 # ----------------------------------------------------------------------------#
@@ -161,3 +170,4 @@ sudo systemctl enable gpm
 
 # Attempt to try to install problematic packages
 trizen -Syyu --needed --noconfirm --noedit $TRY_PKGS
+
