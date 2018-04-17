@@ -20,6 +20,10 @@ if [ "$(id -u)" == "0" ]; then
   echo
   echo "  useradd -m -g [initial_group] -G [additional_groups] -s [login_shell] [username]"
   echo
+  echo "For example, this is a standard single-user config:"
+  echo
+  echo "  useradd -m -g wheel edward"
+  echo
   exit 1
 fi
 
@@ -83,7 +87,7 @@ chmod 700 $HOME/.gnupg
 CORE="linux-headers acpi ntp"
 AUDIO="pulseaudio pulseaudio-alsa alsa-utils pavucontrol pulseaudio-bluetooth \
   pulseaudio-jack qjackctl"
-TOOLS="powertop nmap ntop neofetch htop base-devel"
+TOOLS="powertop nmap ntop neofetch htop tree"
 TEX="pandoc texlive-most"
 FISH="fish"
 FUN="cowsay fortune-mod wtf"
