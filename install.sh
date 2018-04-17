@@ -46,7 +46,7 @@ fi
 
 # We got a lot of things to install, lets install perl-json-xs to make things
 # a little faster.
-trizen -Syyu --needed --noconfirm --noedit perl-json-xs
+trizen -Syyu --needed --noconfirm --noinfo --noedit perl-json-xs
 
 # Update our mirrors to find the fastest one.
 echo "Reflection in progress..."
@@ -128,10 +128,10 @@ GUIPKG="$FONTS $XORG $DESKTOP $RICE $WEB $DISCORD_DEPS $MESSAGING"
 LANGS="$JAVA $JAVASCRIPT $PYTHON"
 
 # Installing most packages
-trizen -Syyu --needed --noconfirm --noedit $CLIPKG $GUIPKG $LANGS
+trizen -Syyu --needed --noconfirm --noinfo --noedit $CLIPKG $GUIPKG $LANGS
 # Intellij is too large, clean cache and clone into home dir instead
 trizen -Sc
-trizen -Syyu --needed --noconfirm --noedit --clone-dir=$HOME $INTELLIJ
+trizen -Syyu --needed --noconfirm --noinfo --noedit --clone-dir=$HOME $INTELLIJ
 
 ###############################################################################
 # SECTION 3                                                                   #
@@ -180,7 +180,7 @@ echo "  $TRY_PKGS"
 echo
 select yn in "Yes" "No"; do
     case $yn in
-        Yes ) trizen -Syyu --needed --noconfirm --noedit $TRY_PKGS; break;;
+        Yes ) trizen -Syyu --needed --noconfirm --noinfo --noedit $TRY_PKGS; break;;
         No ) break;;
     esac
 done
@@ -193,7 +193,7 @@ echo "  $PROPRIETARY"
 echo
 select yn in "Yes" "No"; do
     case $yn in
-        Yes ) trizen -Syyu --needed --noconfirm --noedit $PROPREITARY; break;;
+        Yes ) trizen -Syyu --needed --noconfirm --noinfo --noedit $PROPREITARY; break;;
         No ) break;;
     esac
 done
@@ -206,7 +206,7 @@ echo "  $FUN"
 echo
 select yn in "Yes" "No"; do
     case $yn in
-        Yes ) trizen -Syyu --needed --noconfirm --noedit $FUN; break;;
+        Yes ) trizen -Syyu --needed --noconfirm --noinfo --noedit $FUN; break;;
         No ) break;;
     esac
 done
