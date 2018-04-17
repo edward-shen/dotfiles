@@ -171,7 +171,7 @@ sudo systemctl enable gpm
 echo "Do you want to try to install known-problematic packages?"
 echo "Packages include:"
 echo
-echo "  $TRY_PKG"
+echo "  $TRY_PKGS"
 echo
 select yn in "Yes" "No"; do
     case $yn in
