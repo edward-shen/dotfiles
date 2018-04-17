@@ -101,23 +101,23 @@ XORG="xorg-server xorg-xinit light xorg-xkill xorg-xinput xorg-xmodmap xterm \
 DESKTOP="i3-gaps thunar libreoffice dunst rofi scrot mpv mpv-mpris kitty"
 RICE="compton polybar betterlockscreen"
 WEB="chromium firefox qbittorrent"
-# Discord is disabled because of key fiasco
-# DISCORD_DEPS="wget xdg-utils"
-MESSAGING="slack-desktop" # discord 
-DEV="code intellij-idea-ue-bundled-jre"
+MESSAGING="slack-desktop" 
+DEV="intellij-idea-ue-bundled-jre"
 
 # Languages
 JAVA="openjdk8-doc openjdk8-src jdk8-openjdk"
 JAVASCRIPT="nodejs yarn"
 PYTHON="python"
 
-# Because the discord maintainer is u
+# Packages that often break
+TRY_PKGS="code wget xdg-utils discord"
 
 # Shorthands
 CLIPKG="$CORE $AUDIO $TOOLS $FISH $FUN $TEX"
 GUIPKG="$FONTS $XORG $DESKTOP $RICE $WEB $DISCORD_DEPS $MESSAGING $DEV"
 LANGS="$JAVA $JAVASCRIPT $PYTHON"
 
+# Installing most packages
 trizen -Syyu --needed --noconfirm --noedit $CLIPKG $GUIPKG $LANGS
 
 ###############################################################################
@@ -149,3 +149,12 @@ sudo systemctl enable ntpd
 sudo systemctl enable gpm
 
 # TODO: add in cron job for updating mirrors
+
+###############################################################################
+# SECTION n+1                                                                 #
+# ----------------------------------------------------------------------------#
+# Extra things                                                                #
+###############################################################################
+
+# Attempt to try to install problematic packages
+trizen -Syyu --needed --noconfirm --noedit $TRY_PKGS
