@@ -130,7 +130,7 @@ LANGS="$JAVA $JAVASCRIPT $PYTHON"
 # Installing most packages
 trizen -Syyu --needed --noconfirm --noinfo --noedit $CLIPKG $GUIPKG $LANGS
 # Intellij is too large, clean cache and clone into home dir instead
-trizen -Sc
+trizen -Sc --noconfirm
 trizen -Syyu --needed --noconfirm --noinfo --noedit --clone-dir=$HOME $INTELLIJ
 
 ###############################################################################
@@ -193,7 +193,7 @@ echo "  $PROPRIETARY"
 echo
 select yn in "Yes" "No"; do
     case $yn in
-        Yes ) trizen -Syyu --needed --noconfirm --noinfo --noedit $PROPREITARY; break;;
+        Yes ) trizen -Syyu --needed --noconfirm --noinfo --noedit $PROPRIETARY; break;;
         No ) break;;
     esac
 done
@@ -211,6 +211,6 @@ select yn in "Yes" "No"; do
     esac
 done
 
-TIME_DIFF = $SECONDS - START_TIME
+TIME_DIFF=$(($SECONDS - START_TIME))
 
 echo "Total install time: $(($TIME_DIFF / 3600))hrs $((($TIME_DIFF / 60) % 60))min $(($TIME_DIFF % 60))sec"
