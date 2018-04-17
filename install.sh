@@ -128,7 +128,7 @@ trizen -Syyuc --needed --noconfirm --noedit $GUIPKG
 trizen -Syyuc --needed --noconfirm --noedit $LANGS
 # Intellij effectively requires clean an empty /tmp folder
 trizen -Syyuc --needed --noconfirm --noedit $DEV
- 
+
 ###############################################################################
 # SECTION 3                                                                   #
 # ----------------------------------------------------------------------------#
@@ -168,6 +168,27 @@ sudo systemctl enable gpm
 # Extra things                                                                #
 ###############################################################################
 
-# Attempt to try to install problematic packages
-trizen -Syyu --needed --noconfirm --noedit $TRY_PKGS
+echo "Do you want to try to install known-problematic packages?"
+echo "Packages include:"
+echo
+echo "  $TRY_PKG"
+echo
+select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) trizen -Syyu --needed --noconfirm --noedit $TRY_PKGS; break;;
+        No ) break;;
+    esac
+done
+
+echo "Do you wish to install proprietary software?"
+echo "Packages include:"
+echo
+echo "  $PROPRIETARY"
+echo
+select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) trizen -Syyu --needed --noconfirm --noedit $PROPREITARY; break;;
+        No ) break;;
+    esac
+done
 
