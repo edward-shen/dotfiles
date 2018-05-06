@@ -87,51 +87,68 @@ chmod 700 $HOME/.gnupg
 # Packages to install                                                         #
 ###############################################################################
 
+# [Group Name] PKG1 PKG2 ...PKGN
+# Installs a group of packages. The group name is required, but is not used.
+# Group Name is just a inline way for the maintainer to know what package group
+# is being modified.
+function installgroup {
+  # First input is the title of the group, we can skip it.
+  if (( $# != 1 )); then
+    shift
+    trizen -Syyu --needed --noedit --noinfo --noconfirm $@
+  else
+    echo "The install script is incorrectly parsed."
+    echo "The following line has a incorrect number of parameters:"
+    echo
+    echo "    $@"
+    echo
+  fi
+}
+
 # CLI Packages
-CORE="linux-headers acpi ntp"
-AUDIO="pulseaudio pulseaudio-alsa alsa-utils pavucontrol pulseaudio-bluetooth \
-  pulseaudio-jack qjackctl"
-NET="networkmanager networkmanager-openvpn network-manager-applet"
-TOOLS="powertop nmap neofetch htop tree"
-TEX="pandoc texlive-most"
-FISH="fish"
-FUN="cowsay fortune-mod wtf"
+installgroup CORE linux-headers acpi ntp
+installgroup AUDIO pulseaudio pulseaudio-alsa alsa-utils pavucontrol \
+  pulseaudio-bluetooth pulseaudio-jack qjackctl
+installgroup NET networkmanager networkmanager-openvpn network-manager-applet
+installgroup TOOLS powertop nmap neofetch htop tree
+installgroup TEX pandoc texlive-most
+installgroup FISH fish
+installgroup FUN cowsay fortune-mod wtf
+
 
 # GUI Packages
-FONTS="ttf-ms-fonts ttf-opensans ttf-roboto noto-fonts powerline-fonts-git \
-  ttf-font-awesome-4 ttf-fira-code ttf-dejavu noto-fonts-emoji"
-XORG="xorg-server xorg-xinit light xorg-xkill xorg-xinput xorg-xmodmap xterm \
-  feh xss-lock-git xorg-xset xbindkeys wmctrl xdotool xdg-utils \
-  unclutter-xfixes-git perl-file-mimeinfo"
-DESKTOP="i3-gaps thunar libreoffice dunst rofi scrot mpv mpv-mpris kitty \
-  synergy"
-RICE="compton polybar betterlockscreen"
-WEB="chromium firefox qbittorrent"
-MESSAGING="slack-desktop" 
-INTELLIj="intellij-idea-ue-bundled-jre"
+installgroup FONTS ttf-ms-fonts ttf-opensans ttf-roboto noto-fonts \
+  powerline-fonts-git ttf-font-awesome-4 ttf-fira-code ttf-dejavu \
+  noto-fonts-emoji
+installgroup XORG xorg-server xorg-xinit light xorg-xkill xorg-xinput \
+  xorg-xmodmap xterm xss-lock-git xorg-xset xbindkeys wmctrl xdotool xdg-utils \
+  unclutter-xfixes-git perl-file-mimeinfo
+installgroup DESKTOP i3-gaps thunar libreoffice dunst rofi scrot mpv mpv-mpris \
+  kitty synergy feh
+installgroup RICE compton polybar betterlockscreen
+installgroup WEB chromium firefox qbittorrent
+installgroup MESSAGING slack-desktop
 
 # Languages
-JAVA="openjdk8-doc openjdk8-src jdk8-openjdk"
-JAVASCRIPT="nodejs yarn"
-PYTHON="python"
+installgroup JAVA openjdk8-doc openjdk8-src jdk8-openjdk
+installgroup JS nodejs yarn
+installgroup PY python # No need for pip, python3 comes with pip
 
 # Packages that often break; installed in section n+1
 # wget and xdg-utils are an opt (but not really) dep of discord.
-TRY_PKGS="code wget xdg-utils discord"
+$TRY_PKGS="code wget xdg-utils discord"
 
 # Packages that are proprietary; installed in section n+1
-PROPRIETARY="spotify"
+$PROPRIETARY="spotify"
 
-# Groups
-CLIPKG="$CORE $AUDIO $TOOLS $FISH $TEX $NET"
-GUIPKG="$FONTS $XORG $DESKTOP $RICE $WEB $DISCORD_DEPS $MESSAGING"
-LANGS="$JAVA $JAVASCRIPT $PYTHON"
-
-# Installing most packages
-trizen -Syyu --needed --noconfirm --noinfo --noedit $CLIPKG $GUIPKG $LANGS
-# Intellij is too large, clean cache and clone into home dir instead
+# Intellij is too large, clean cache and clone into a temp dir instead
 trizen -Sc --noconfirm
-trizen -Syyu --needed --noconfirm --noinfo --noedit --clone-dir=$HOME $INTELLIJ
+$INTELLIj="intellij-idea-ue-bundled-jre"
+mkdir trizenintellij
+pushd trizenintellij
+trizen -Syyu --needed --noconfirm --noinfo --noedit --clone-dir=. $INTELLIJ
+popd trizenintellij
+rmdir trizenintellij
 
 ###############################################################################
 # SECTION 3                                                                   #
@@ -180,7 +197,8 @@ echo "  $TRY_PKGS"
 echo
 select yn in "Yes" "No"; do
     case $yn in
-        Yes ) trizen -Syyu --needed --noconfirm --noinfo --noedit $TRY_PKGS; break;;
+        Yes ) trizen -Syyu --needed --noconfirm --noinfo --noedit $TRY_PKGS;
+          break;;
         No ) break;;
     esac
 done
@@ -193,7 +211,8 @@ echo "  $PROPRIETARY"
 echo
 select yn in "Yes" "No"; do
     case $yn in
-        Yes ) trizen -Syyu --needed --noconfirm --noinfo --noedit $PROPRIETARY; break;;
+        Yes ) trizen -Syyu --needed --noconfirm --noinfo --noedit $PROPRIETARY;\
+          break;;
         No ) break;;
     esac
 done
