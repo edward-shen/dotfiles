@@ -128,6 +128,7 @@ installgroup DESKTOP i3-gaps thunar libreoffice dunst rofi scrot mpv mpv-mpris \
 installgroup RICE compton polybar betterlockscreen
 installgroup WEB chromium firefox qbittorrent
 installgroup MESSAGING slack-desktop
+installgroup PDF zathura zathura-pdf-mupdf
 
 # Languages
 installgroup JAVA openjdk8-doc openjdk8-src jdk8-openjdk
