@@ -115,7 +115,6 @@ installgroup TEX pandoc texlive-most
 installgroup FISH fish
 installgroup FUN cowsay fortune-mod wtf
 
-
 # GUI Packages
 installgroup FONTS ttf-ms-fonts ttf-opensans ttf-roboto noto-fonts \
   powerline-fonts-git ttf-font-awesome-4 ttf-fira-code ttf-dejavu \
@@ -126,6 +125,9 @@ installgroup XORG xorg-server xorg-xinit light xorg-xkill xorg-xinput \
 installgroup DESKTOP i3-gaps thunar libreoffice dunst rofi scrot mpv mpv-mpris \
   kitty synergy feh
 installgroup RICE compton polybar betterlockscreen
+# try running xss-lock; if you're missing libasan, install the git version of
+# i3-color
+# trizen -S i3-color-git
 installgroup WEB chromium firefox qbittorrent
 installgroup MESSAGING slack-desktop
 installgroup PDF zathura zathura-pdf-mupdf
@@ -134,6 +136,7 @@ installgroup PDF zathura zathura-pdf-mupdf
 installgroup JAVA openjdk8-doc openjdk8-src jdk8-openjdk
 installgroup JS nodejs yarn
 installgroup PY python # No need for pip, python3 comes with pip
+installgroup GOOGLELANG dart go
 
 # Packages that often break; installed in section n+1
 # wget and xdg-utils are an opt (but not really) dep of discord.
