@@ -35,18 +35,14 @@ fi
 # Also install base-devel, which is needed for trizen.
 yes "" | sudo pacman -Syyu --needed git reflector base-devel
 
-# Install trizen if not already installed
-if [ ! -f /usr/bin/trizen ]; then
-  git clone https://aur.archlinux.org/trizen.git
-  pushd trizen
+# Install aurman if not already installed
+if [ ! -f /usr/bin/aurman ]; then
+  git clone https://aur.archlinux.org/aurman.git
+  pushd aurman
   yes | makepkg -sri
   popd
-  rm -rf trizen
+  rm -rf aurman
 fi
-
-# We got a lot of things to install, lets install perl-json-xs to make things
-# a little faster.
-trizen -Syyu --needed --noconfirm --noinfo --noedit perl-json-xs
 
 # Update our mirrors to find the fastest one.
 echo "Reflection in progress..."
@@ -72,8 +68,8 @@ mkdir -p $HOME/Documents/repos
 mkdir -p $HOME/Documents/school
 
 # Some soft links so I can just cd from my home directory
-ln -s $HOME/Documents/repos ..
-ln -s $HOME/Documents/school ..
+ln -s $HOME/Documents/repos ~/repos
+ln -s $HOME/Documents/school ~/school
 
 mkdir -p $HOME/.config
 mkdir -p $HOME/.gnupg
@@ -95,7 +91,7 @@ function installgroup {
   # First input is the title of the group, we can skip it.
   if (( $# != 1 )); then
     shift
-    trizen -Syyu --needed --noedit --noinfo --noconfirm $@
+    aurman -Syyu --needed --noedit --noinfo --noconfirm $@
   else
     echo "The install script is incorrectly parsed."
     echo "The following line has a incorrect number of parameters:"
@@ -122,8 +118,8 @@ installgroup FONTS ttf-ms-fonts ttf-opensans ttf-roboto noto-fonts \
 installgroup XORG xorg-server xorg-xinit light xorg-xkill xorg-xinput \
   xorg-xmodmap xterm xss-lock-git xorg-xset xbindkeys wmctrl xdotool xdg-utils \
   unclutter-xfixes-git perl-file-mimeinfo
-installgroup DESKTOP i3-gaps thunar libreoffice dunst rofi scrot mpv mpv-mpris \
-  kitty synergy feh
+installgroup DESKTOP i3-gaps-next-git plasma libreoffice dunst rofi scrot mpv \
+  mpv-mpris kitty synergy feh
 installgroup RICE compton polybar betterlockscreen
 # try running xss-lock; if you're missing libasan, install the git version of
 # i3-color
@@ -146,7 +142,7 @@ $TRY_PKGS="code wget xdg-utils discord"
 $PROPRIETARY="spotify"
 
 # Intellij is too large, clean cache and clone into a temp dir instead
-trizen -Sc --noconfirm
+aurman -Sc --noconfirm
 $INTELLIj="intellij-idea-ue-bundled-jre"
 mkdir trizenintellij
 pushd trizenintellij
@@ -201,7 +197,7 @@ echo "  $TRY_PKGS"
 echo
 select yn in "Yes" "No"; do
     case $yn in
-        Yes ) trizen -Syyu --needed --noconfirm --noinfo --noedit $TRY_PKGS;
+        Yes ) aurman -Syyu --needed --noconfirm --noinfo --noedit $TRY_PKGS;
           break;;
         No ) break;;
     esac
@@ -215,7 +211,7 @@ echo "  $PROPRIETARY"
 echo
 select yn in "Yes" "No"; do
     case $yn in
-        Yes ) trizen -Syyu --needed --noconfirm --noinfo --noedit $PROPRIETARY;\
+        Yes ) aurman -Syyu --needed --noconfirm --noinfo --noedit $PROPRIETARY;\
           break;;
         No ) break;;
     esac
@@ -229,7 +225,7 @@ echo "  $FUN"
 echo
 select yn in "Yes" "No"; do
     case $yn in
-        Yes ) trizen -Syyu --needed --noconfirm --noinfo --noedit $FUN; break;;
+        Yes ) aurman -Syyu --needed --noconfirm --noinfo --noedit $FUN; break;;
         No ) break;;
     esac
 done
