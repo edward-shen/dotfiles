@@ -107,7 +107,7 @@ installgroup AUDIO pulseaudio pulseaudio-alsa alsa-utils pavucontrol \
 installgroup NET networkmanager networkmanager-openvpn network-manager-applet
 installgroup TOOLS powertop nmap neofetch htop tree
 installgroup TEX pandoc texlive-most
-installgroup SHELL fish
+installgroup SHELL zsh
 installgroup FUN cowsay fortune-mod wtf
 
 # GUI Packages
@@ -160,8 +160,8 @@ mkdir -p $HOME/.config/mpv/scripts
 ln -s /usr/lib/mpv/mpris.so $HOME/.config/mpv/scripts/mpris.so
 
 # Set root and current users to use fish as shell
-sudo chsh $USER -s `which fish`
-sudo chsh root -s `which fish`
+sudo chsh $USER -s `which zsh`
+sudo chsh root -s `which zsh`
 
 # Generate SSH key
 echo -e "\n\n" | ssh-keygen
