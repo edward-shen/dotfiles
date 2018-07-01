@@ -90,7 +90,7 @@ function installgroup {
   # First input is the title of the group, we can skip it.
   if (( $# != 1 )); then
     shift
-    aurman -Syyu --needed --noedit --noinfo --noconfirm $@
+    aurman -Syyu --needed --noedit --noconfirm $@
   else
     echo "The install script is incorrectly parsed."
     echo "The following line has a incorrect number of parameters:"
@@ -107,7 +107,7 @@ installgroup AUDIO pulseaudio pulseaudio-alsa alsa-utils pavucontrol \
 installgroup NET networkmanager networkmanager-openvpn network-manager-applet
 installgroup TOOLS powertop nmap neofetch htop tree
 installgroup TEX pandoc texlive-most
-installgroup FISH fish
+installgroup SHELL fish
 installgroup FUN cowsay fortune-mod wtf
 
 # GUI Packages
@@ -143,11 +143,11 @@ $PROPRIETARY="spotify"
 # Intellij is too large, clean cache and clone into a temp dir instead
 aurman -Sc --noconfirm
 $INTELLIj="intellij-idea-ue-bundled-jre"
-mkdir trizenintellij
-pushd trizenintellij
-trizen -Syyu --needed --noconfirm --noinfo --noedit --clone-dir=. $INTELLIJ
-popd trizenintellij
-rmdir trizenintellij
+mkdir aurmanintellij
+pushd aurmanintellij
+aurman -Syyu --needed --noedit --noconfirm --clone-dir=. $INTELLIJ
+popd aurmanintellij
+rmdir aurmanintellij
 
 ###############################################################################
 # SECTION 3                                                                   #
@@ -210,7 +210,7 @@ echo "  $PROPRIETARY"
 echo
 select yn in "Yes" "No"; do
     case $yn in
-        Yes ) aurman -Syyu --needed --noconfirm --noinfo --noedit $PROPRIETARY;\
+        Yes ) aurman -Syyu --needed --noconfirm --noedit $PROPRIETARY;\
           break;;
         No ) break;;
     esac
@@ -224,7 +224,7 @@ echo "  $FUN"
 echo
 select yn in "Yes" "No"; do
     case $yn in
-        Yes ) aurman -Syyu --needed --noconfirm --noinfo --noedit $FUN; break;;
+        Yes ) aurman -Syyu --needed --noconfirm --noedit $FUN; break;;
         No ) break;;
     esac
 done
