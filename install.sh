@@ -32,7 +32,7 @@ if [ "$(id -u)" == "0" ]; then
 fi
 
 # Force refresh of dbs and install git and reflector, if not present.
-# Also install base-devel, which is needed for trizen.
+# Also install base-devel, which is needed for aurman.
 yes "" | sudo pacman -Syyu --needed git reflector base-devel
 
 # Install aurman if not already installed
@@ -105,9 +105,9 @@ installgroup CORE linux-headers acpi ntp
 installgroup AUDIO pulseaudio pulseaudio-alsa alsa-utils pavucontrol \
   pulseaudio-bluetooth pulseaudio-jack qjackctl
 installgroup NET networkmanager networkmanager-openvpn network-manager-applet
-installgroup TOOLS powertop nmap neofetch htop tree
-installgroup TEX pandoc texlive-most
-installgroup SHELL zsh
+installgroup TOOLS powertop nmap neofetch htop tree stow
+installgroup TEX pandoc texlive-most texstudio
+installgroup SHELL zsh oh-my-zsh zsh-syntax-highlighting
 installgroup FUN cowsay fortune-mod wtf
 
 # GUI Packages
@@ -120,15 +120,14 @@ installgroup XORG xorg-server xorg-xinit light xorg-xkill xorg-xinput \
 installgroup DESKTOP i3-gaps-next-git plasma libreoffice dunst rofi scrot mpv \
   mpv-mpris kitty synergy feh
 installgroup RICE compton polybar betterlockscreen
-# try running xss-lock; if you're missing libasan, install the git version of
-# i3-color
-# trizen -S i3-color-git
+# try running xss-lock; if you're missing libasan, install i3-color-git
 installgroup WEB chromium firefox qbittorrent
 installgroup MESSAGING slack-desktop
 installgroup PDF zathura zathura-pdf-mupdf
 
 # Languages
-installgroup JAVA openjdk8-doc openjdk8-src jdk8-openjdk
+installgroup JAVA openjdk8-doc openjdk8-src jdk8-openjdk \
+  intellij-idea-ue-bundled-jre
 installgroup JS nodejs yarn
 installgroup PY python # No need for pip, python3 comes with pip
 installgroup GOOGLELANG dart go
@@ -140,20 +139,13 @@ $TRY_PKGS="code wget xdg-utils discord"
 # Packages that are proprietary; installed in section n+1
 $PROPRIETARY="spotify"
 
-# Intellij is too large, clean cache and clone into a temp dir instead
-aurman -Sc --noconfirm
-$INTELLIj="intellij-idea-ue-bundled-jre"
-mkdir aurmanintellij
-pushd aurmanintellij
-aurman -Syyu --needed --noedit --noconfirm --clone-dir=. $INTELLIJ
-popd aurmanintellij
-rmdir aurmanintellij
-
 ###############################################################################
 # SECTION 3                                                                   #
 # ----------------------------------------------------------------------------#
 # Configuration                                                               #
 ###############################################################################
+
+stow -t ~ zsh
 
 # mpv-mpris
 mkdir -p $HOME/.config/mpv/scripts
@@ -166,6 +158,10 @@ sudo chsh root -s `which zsh`
 # Generate SSH key
 echo -e "\n\n" | ssh-keygen
 
+# Enable reflector timer
+sudo systemctl enable reflector.timer
+cp unstowables/reflector-timer/reflector.conf \
+  /usr/share/reflector-time/reflector.conf
 ###############################################################################
 # SECTION 4                                                                   #
 # ----------------------------------------------------------------------------#
