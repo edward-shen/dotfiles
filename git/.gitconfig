@@ -1,0 +1,13 @@
+[user]
+	email = 6173958+edward-shen@users.noreply.github.com
+	name = Edward Shen
+[core]
+	autocrlf = input
+	askpass = 
+[push]
+	default = simple
+[commit]
+	gpgsign = true
+[gpg]
+	program = gpg
+

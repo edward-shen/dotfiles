@@ -145,7 +145,7 @@ $PROPRIETARY="spotify"
 # Configuration                                                               #
 ###############################################################################
 
-stow -t ~ zsh
+stow -t ~ zsh git
 
 # mpv-mpris
 mkdir -p $HOME/.config/mpv/scripts
@@ -160,7 +160,7 @@ echo -e "\n\n" | ssh-keygen
 
 # Enable reflector timer
 sudo systemctl enable reflector.timer
-cp unstowables/reflector-timer/reflector.conf \
+sudo cp unstowables/reflector-timer/reflector.conf \
   /usr/share/reflector-time/reflector.conf
 ###############################################################################
 # SECTION 4                                                                   #
