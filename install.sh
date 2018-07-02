@@ -3,11 +3,11 @@
 # Thanks to @kylesferrazza on GitHub for the base of this dot file!
 # Check him out at https://www.kylesferrazza.com
 
-###############################################################################
-# SECTION 0                                                                   #
-# ----------------------------------------------------------------------------#
-# Meta-script initialization                                                  #
-###############################################################################
+################################################################################
+# SECTION 0                                                                    #
+# -----------------------------------------------------------------------------#
+# Meta-script initialization                                                   #
+################################################################################
 
 # Fail immediately if something goes wrong.
 set -e
@@ -56,11 +56,11 @@ sudo reflector \
 # Remove extraneous file.
 sudo rm -f /etc/pacman.d/mirrorlist.pacnew
 
-###############################################################################
-# SECTION 1                                                                   #
-# ----------------------------------------------------------------------------#
-# User home directories                                                       #
-###############################################################################
+################################################################################
+# SECTION 1                                                                    #
+# -----------------------------------------------------------------------------#
+# User home directories                                                        #
+################################################################################
 
 mkdir -p $HOME/Downloads
 mkdir -p $HOME/Documents/repos
@@ -76,11 +76,11 @@ chmod 700 $HOME/.gnupg
 
 # TODO complete
 
-###############################################################################
-# SECTION 2                                                                   #
-# ----------------------------------------------------------------------------#
-# Packages to install                                                         #
-###############################################################################
+################################################################################
+# SECTION 2                                                                    #
+# -----------------------------------------------------------------------------#
+# Packages to install                                                          #
+################################################################################
 
 # [Group Name] PKG1 PKG2 ...PKGN
 # Installs a group of packages. The group name is required, but is not used.
@@ -92,11 +92,11 @@ function installgroup {
     shift
     aurman -Syyu --needed --noedit --noconfirm $@
   else
-    echo "The install script is incorrectly parsed."
-    echo "The following line has a incorrect number of parameters:"
-    echo
-    echo "    $@"
-    echo
+  echo "The install script is malformed.
+The following line has an incorrect number of parameters:
+
+    installgroup $@
+"
   fi
 }
 
@@ -117,8 +117,8 @@ installgroup FONTS ttf-ms-fonts ttf-opensans ttf-roboto noto-fonts \
 installgroup XORG xorg-server xorg-xinit light xorg-xkill xorg-xinput \
   xorg-xmodmap xterm xss-lock-git xorg-xset xbindkeys wmctrl xdotool xdg-utils \
   unclutter-xfixes-git perl-file-mimeinfo
-installgroup DESKTOP i3-gaps-next-git libreoffice dunst rofi scrot mpv \
-  mpv-mpris kitty synergy feh
+installgroup DESKTOP i3-gaps-next-git libreoffice dunst rofi scrot mpv feh \
+  mpv-mpris kitty synergy
 installgroup RICE compton polybar betterlockscreen
 # try running xss-lock; if you're missing libasan, install i3-color-git
 installgroup WEB chromium firefox qbittorrent
@@ -139,11 +139,11 @@ $TRY_PKGS="code wget xdg-utils discord"
 # Packages that are proprietary; installed in section n+1
 $PROPRIETARY="spotify"
 
-###############################################################################
-# SECTION 3                                                                   #
-# ----------------------------------------------------------------------------#
-# Configuration                                                               #
-###############################################################################
+################################################################################
+# SECTION 3                                                                    #
+# -----------------------------------------------------------------------------#
+# Configuration                                                                #
+################################################################################
 
 stow -t ~ zsh git
 
@@ -162,11 +162,12 @@ echo -e "\n\n" | ssh-keygen
 sudo systemctl enable reflector.timer
 sudo cp unstowables/reflector-timer/reflector.conf \
   /usr/share/reflector-time/reflector.conf
-###############################################################################
-# SECTION 4                                                                   #
-# ----------------------------------------------------------------------------#
-# Services                                                                    #
-###############################################################################
+
+################################################################################
+# SECTION 4                                                                    #
+# -----------------------------------------------------------------------------#
+# Services                                                                     #
+################################################################################
 
 # Networking
 sudo systemctl enable NetworkManager
@@ -178,11 +179,11 @@ sudo systemctl enable gpm
 
 # TODO: add in cron job for updating mirrors
 
-###############################################################################
-# SECTION n+1                                                                 #
-# ----------------------------------------------------------------------------#
-# Extra things                                                                #
-###############################################################################
+################################################################################
+# SECTION n+1                                                                  #
+# -----------------------------------------------------------------------------#
+# Extra things                                                                 #
+################################################################################
 
 echo
 echo "Do you want to try to install known-problematic packages?"

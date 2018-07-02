@@ -1,2 +1,2 @@
-This folder contains unstowable files, and are manually added into their 
-respective files.
+This folder contains unstowable files, and are added separately from the stow
+program.
