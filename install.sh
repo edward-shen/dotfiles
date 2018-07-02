@@ -17,17 +17,17 @@ START_TIME=$SECONDS
 
 # Don't run as root!
 if [ "$(id -u)" == "0" ]; then
-  echo
-  echo "Do not run this with sudo."
-  echo "If this was a fresh install, consider adding a new user:"
-  echo
-  echo "  useradd -m -g [initial_group] -G [additional_groups] -s [login_shell] [username]"
-  echo
-  echo "For example, this is a standard single-user config:"
-  echo
-  echo "  useradd -m -g wheel edward"
-  echo "  passwd edward"
-  echo
+  echo "
+Do not run this with sudo.
+If this was a fresh install, consider adding a new user:
+
+  useradd -m -g [init_group] -G [additional_groups] -s [login_shell] [username]
+
+For example, this is a standard single-user config:
+
+  useradd -m -g wheel edward
+  passwd edward
+"
   exit 1
 fi
 
@@ -117,7 +117,7 @@ installgroup FONTS ttf-ms-fonts ttf-opensans ttf-roboto noto-fonts \
 installgroup XORG xorg-server xorg-xinit light xorg-xkill xorg-xinput \
   xorg-xmodmap xterm xss-lock-git xorg-xset xbindkeys wmctrl xdotool xdg-utils \
   unclutter-xfixes-git perl-file-mimeinfo
-installgroup DESKTOP i3-gaps-next-git plasma libreoffice dunst rofi scrot mpv \
+installgroup DESKTOP i3-gaps-next-git libreoffice dunst rofi scrot mpv \
   mpv-mpris kitty synergy feh
 installgroup RICE compton polybar betterlockscreen
 # try running xss-lock; if you're missing libasan, install i3-color-git
