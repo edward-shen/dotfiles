@@ -105,7 +105,7 @@ installgroup CORE linux-headers acpi ntp
 installgroup AUDIO pulseaudio pulseaudio-alsa alsa-utils pavucontrol \
   pulseaudio-bluetooth pulseaudio-jack qjackctl
 installgroup NET networkmanager networkmanager-openvpn network-manager-applet
-installgroup TOOLS powertop nmap neofetch htop tree stow
+installgroup TOOLS powertop nmap neofetch htop tree stow rmtrash
 installgroup TEX pandoc texlive-most texstudio
 installgroup SHELL zsh oh-my-zsh zsh-syntax-highlighting
 installgroup FUN cowsay fortune-mod wtf
@@ -134,7 +134,8 @@ installgroup GOOGLELANG dart go
 
 # Packages that often break; installed in section n+1
 # wget and xdg-utils are an opt (but not really) dep of discord.
-$TRY_PKGS="code wget xdg-utils discord"
+# gvfs is used by code to delete files.
+$TRY_PKGS="gvfs code wget xdg-utils discord"
 
 # Packages that are proprietary; installed in section n+1
 $PROPRIETARY="spotify"
