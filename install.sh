@@ -187,9 +187,12 @@ sudo systemctl enable gpm
 # Extra things                                                                 #
 ################################################################################
 
+# Accepts a String and a list of packages. The first param describes the group
+# of packages to the user, while the remainder of the arugments specify the
+# packages to install.
 function extrapkgs {
   echo "
-Do you want to install $0?
+Do you want to install $1?
 Packages include:
 
     ${@:2}
