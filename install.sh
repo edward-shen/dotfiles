@@ -146,6 +146,7 @@ $PROPRIETARY="spotify"
 # Configuration                                                                #
 ################################################################################
 
+# specify home directory just in case it's not run from home dir.
 stow -t ~ zsh git
 
 # mpv-mpris
@@ -186,46 +187,24 @@ sudo systemctl enable gpm
 # Extra things                                                                 #
 ################################################################################
 
-echo
-echo "Do you want to try to install known-problematic packages?"
-echo "Packages include:"
-echo
-echo "  $TRY_PKGS"
-echo
-select yn in "Yes" "No"; do
-    case $yn in
-        Yes ) aurman -Syyu --needed --noconfirm --noinfo --noedit $TRY_PKGS;
-          break;;
-        No ) break;;
-    esac
-done
+function extrapkgs {
+  echo "
+Do you want to install $0?
+Packages include:
 
-echo
-echo "Do you wish to install proprietary software?"
-echo "Packages include:"
-echo
-echo "  $PROPRIETARY"
-echo
-select yn in "Yes" "No"; do
+    ${@:2}
+"
+  select yn in "Yes" "No"; do
     case $yn in
-        Yes ) aurman -Syyu --needed --noconfirm --noedit $PROPRIETARY;\
-          break;;
-        No ) break;;
+      Yes ) aurman -Syyu --needed --noconfirm --noedit ${@:2}; break;;
+      No ) break;;
     esac
-done
+  done
+}
 
-echo
-echo "Do you wish to install fun software?"
-echo "Packages include:"
-echo
-echo "  $FUN"
-echo
-select yn in "Yes" "No"; do
-    case $yn in
-        Yes ) aurman -Syyu --needed --noconfirm --noedit $FUN; break;;
-        No ) break;;
-    esac
-done
+extrapkgs "known-problematic packages" $TRY_PKGS
+extrapkgs "proprietary software" $PROPRIETARY
+extrapkgs "fun software" $FUN
 
 TIME_DIFF=$(($SECONDS - START_TIME))
 
