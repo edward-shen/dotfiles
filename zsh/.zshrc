@@ -95,3 +95,5 @@ source $ZSH/oh-my-zsh.sh
 
 # Enable fish highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
