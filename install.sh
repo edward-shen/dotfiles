@@ -62,17 +62,17 @@ sudo rm -f /etc/pacman.d/mirrorlist.pacnew
 # User home directories                                                        #
 ################################################################################
 
-mkdir -p $HOME/Downloads
-mkdir -p $HOME/Documents/repos
-mkdir -p $HOME/Documents/school
+mkdir -p "$HOME/Downloads"
+mkdir -p "$HOME/Documents/repos"
+mkdir -p "$HOME/Documents/school"
 
 # Some soft links so I can just cd from my home directory
-ln -s $HOME/Documents/repos ~/repos
-ln -s $HOME/Documents/school ~/school
+ln -s "$HOME/Documents/repos" ~/repos
+ln -s "$HOME/Documents/school" ~/school
 
-mkdir -p $HOME/.config
-mkdir -p $HOME/.gnupg
-chmod 700 $HOME/.gnupg
+mkdir -p "$HOME/.config"
+mkdir -p "$HOME/.gnupg"
+chmod 700 "$HOME/.gnupg"
 
 # TODO complete
 
@@ -90,12 +90,12 @@ function installgroup {
   # First input is the title of the group, we can skip it.
   if (( $# != 1 )); then
     shift
-    aurman -Syyu --needed --noedit --noconfirm $@
+    aurman -Syyu --needed --noedit --noconfirm "$@"
   else
   echo "The install script is malformed.
 The following line has an incorrect number of parameters:
 
-    installgroup $@
+    installgroup $*
 "
   fi
 }
@@ -135,10 +135,10 @@ installgroup GOOGLELANG dart go
 # Packages that often break; installed in section n+1
 # wget and xdg-utils are an opt (but not really) dep of discord.
 # gvfs is used by code to delete files.
-$TRY_PKGS="gvfs code wget xdg-utils discord"
+TRY_PKGS="gvfs code wget xdg-utils discord"
 
 # Packages that are proprietary; installed in section n+1
-$PROPRIETARY="spotify"
+PROPRIETARY="spotify"
 
 ################################################################################
 # SECTION 3                                                                    #
@@ -150,15 +150,17 @@ $PROPRIETARY="spotify"
 stow -t ~ zsh git
 
 # mpv-mpris
-mkdir -p $HOME/.config/mpv/scripts
-ln -s /usr/lib/mpv/mpris.so $HOME/.config/mpv/scripts/mpris.so
+mkdir -p "$HOME/.config/mpv/scripts"
+ln -s /usr/lib/mpv/mpris.so "$HOME/.config/mpv/scripts/mpris.so"
 
 # Set root and current users to use fish as shell
-sudo chsh $USER -s `which zsh`
-sudo chsh root -s `which zsh`
+sudo chsh "$USER" -s "$(command -v zsh)"
+sudo chsh root -s "$(command -v  zsh)"
 
 # Generate SSH key
-echo -e "\n\n" | ssh-keygen
+echo -e "
+
+" | ssh-keygen
 
 # Enable reflector timer
 sudo systemctl enable reflector.timer
@@ -195,20 +197,20 @@ function extrapkgs {
 Do you want to install $1?
 Packages include:
 
-    ${@:2}
+    ${*:2}
 "
   select yn in "Yes" "No"; do
     case $yn in
-      Yes ) aurman -Syyu --needed --noconfirm --noedit ${@:2}; break;;
+      Yes ) aurman -Syyu --needed --noconfirm --noedit "${*:2}"; break;;
       No ) break;;
     esac
   done
 }
 
-extrapkgs "known-problematic packages" $TRY_PKGS
-extrapkgs "proprietary software" $PROPRIETARY
-extrapkgs "fun software" $FUN
+extrapkgs "known-problematic packages" "$TRY_PKGS"
+extrapkgs "proprietary software" "$PROPRIETARY"
+extrapkgs "fun software" "$FUN"
 
-TIME_DIFF=$(($SECONDS - START_TIME))
+TIME_DIFF=${$SECONDS-$START_TIME}
 
-echo "Total install time: $(($TIME_DIFF / 3600))hrs $((($TIME_DIFF / 60) % 60))min $(($TIME_DIFF % 60))sec"
+echo "Total install time: ${$TIME_DIFF / 3600}hrs ${($TIME_DIFF / 60) % 60}min ${$TIME_DIFF % 60}sec"
