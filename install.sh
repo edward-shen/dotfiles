@@ -147,7 +147,7 @@ PROPRIETARY="spotify"
 ################################################################################
 
 # specify home directory just in case it's not run from home dir.
-stow -t ~ zsh git
+stow -t ~ zsh git i3
 
 # mpv-mpris
 mkdir -p "$HOME/.config/mpv/scripts"
