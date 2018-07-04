@@ -105,7 +105,7 @@ installgroup CORE linux-headers acpi ntp
 installgroup AUDIO pulseaudio pulseaudio-alsa alsa-utils pavucontrol \
   pulseaudio-bluetooth pulseaudio-jack qjackctl
 installgroup NET networkmanager networkmanager-openvpn network-manager-applet
-installgroup TOOLS powertop nmap neofetch htop tree stow rmtrash 7z unar
+installgroup TOOLS powertop nmap neofetch htop tree stow rmtrash 7z unarchiver
 installgroup TEX pandoc texlive-most texstudio
 installgroup SHELL zsh oh-my-zsh zsh-syntax-highlighting
 installgroup FUN cowsay fortune-mod wtf
