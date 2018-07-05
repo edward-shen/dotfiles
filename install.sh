@@ -138,7 +138,7 @@ installgroup GOOGLELANG dart go
 TRY_PKGS="gvfs code wget xdg-utils discord"
 
 # Packages that are proprietary; installed in section n+1
-PROPRIETARY="spotify"
+PROPRIETARY="spotify unrar"
 
 ################################################################################
 # SECTION 3                                                                    #
