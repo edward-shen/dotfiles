@@ -69,9 +69,9 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+# bindsym $mod+s layout stacking
+# bindsym $mod+w layout tabbed
+# bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -135,6 +135,17 @@ mode "resize" {
         bindsym Up resize shrink height 10 px or 10 ppt
         bindsym Right resize grow width 10 px or 10 ppt
 
+	# Finer controls
+        bindsym Shift+j resize shrink width 5 px or 5 ppt
+        bindsym Shift+k resize grow height 5 px or 5 ppt
+        bindsym Shift+l resize shrink height 5 px or 5 ppt
+        bindsym Shift+semicolon resize grow width 5 px or 5 ppt
+
+        bindsym Shift+Left resize shrink width 5 px or 5 ppt
+        bindsym Shift+Down resize grow height 5 px or 5 ppt
+        bindsym Shift+Up resize shrink height 5 px or 5 ppt
+        bindsym Shift+Right resize grow width 5 px or 5 ppt
+
         # back to normal: Enter or Escape
         bindsym Return mode "default"
         bindsym Escape mode "default"
@@ -170,7 +181,7 @@ exec --no-startup-id compton
 
 # Lockscreen stuff
 bindsym $mod+grave exec betterlockscreen -l blur
-exec --no-startup-id xss-lock ~/bin/xss-lock
+exec --no-startup-id xss-lock ~/.config/i3/xss-lock
 
 # Custom shit
 focus_follows_mouse no
