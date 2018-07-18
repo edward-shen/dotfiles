@@ -117,7 +117,7 @@ installgroup FONTS ttf-ms-fonts ttf-opensans ttf-roboto noto-fonts \
 installgroup XORG xorg-server xorg-xinit light xorg-xkill xorg-xinput \
   xorg-xmodmap xterm xss-lock-git xorg-xset xbindkeys wmctrl xdotool xdg-utils \
   unclutter-xfixes-git perl-file-mimeinfo
-installgroup DESKTOP i3-gaps-next-git libreoffice dunst rofi scrot mpv feh \
+installgroup DESKTOP i3-gaps-next-git libreoffice dunst rofi maim mpv feh \
   mpv-mpris kitty synergy
 installgroup RICE compton polybar betterlockscreen
 # try running xss-lock; if you're missing libasan, install i3-color-git
