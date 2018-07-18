@@ -147,7 +147,7 @@ PROPRIETARY="spotify unrar"
 ################################################################################
 
 # specify home directory just in case it's not run from home dir.
-stow -t ~ zsh git i3 kitty rofi
+stow -t ~ zsh git i3 kitty rofi x
 
 # mpv-mpris
 mkdir -p "$HOME/.config/mpv/scripts"

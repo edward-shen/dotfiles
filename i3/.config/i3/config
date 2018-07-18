@@ -175,7 +175,6 @@ gaps inner 20
 smart_gaps on
 
 # Making our shit fancy
-exec --no-startup-id feh --bg-fill ~/Pictures/4k.png
 exec --no-startup-id blurme/blurme
 exec --no-startup-id compton
 
