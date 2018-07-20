@@ -5,7 +5,7 @@ nor needs to see it. I'm sorry. This is public so I can just clone from this
 repository without setting up anything else.
 
 ## Notable includes
-- fish (sets both current user and root's default shell)
+- zsh (sets both current user and root's default shell)
 - i3-gaps
 - polybar
 - betterlockscreen
@@ -14,11 +14,11 @@ repository without setting up anything else.
 - qbittorrent (which works better than the Windows binary...)
 - rofi
 - thunar
-- scrot
+- maim (instead of scrot)
 - mpv
 - The following languages:
   - Java
-  - Intellij Java (With Intellij Ulimate edition)
+  - Intellij Java (With Intellij Ultimate edition)
   - Node (and Yarn)
 - compton
 
