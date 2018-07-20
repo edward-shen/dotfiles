@@ -147,7 +147,7 @@ PROPRIETARY="spotify unrar"
 ################################################################################
 
 # specify home directory just in case it's not run from home dir.
-stow -t ~ zsh git i3 kitty rofi x polybar
+stow -t ~ git gtk3 i3 kitty neofetch polybar rofi x zsh
 
 # TODO: betterlockscreen setup
 
