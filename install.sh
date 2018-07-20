@@ -149,7 +149,8 @@ PROPRIETARY="spotify unrar"
 # specify home directory just in case it's not run from home dir.
 stow -t ~ git gtk3 i3 kitty neofetch polybar rofi x zsh
 
-# TODO: betterlockscreen setup
+# will throw division by 0 error, that's ok
+betterlockscreen -u ~/.lockbg.png -b 0
 
 # mpv-mpris
 mkdir -p "$HOME/.config/mpv/scripts"
