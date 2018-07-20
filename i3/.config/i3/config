@@ -173,17 +173,10 @@ bindsym XF86AudioPrev exec playerctl previous
 for_window [class="^.*"] border pixel 1
 gaps inner 20
 smart_gaps on
-
-# Making our shit fancy
-exec --no-startup-id blurme/blurme
-exec --no-startup-id compton
+smart_borders on
 
 # Lockscreen stuff
-bindsym $mod+grave exec betterlockscreen -l blur
-exec --no-startup-id xss-lock ~/.config/i3/xss-lock
+bindsym $mod+grave exec --no-startup-id betterlockscreen -l blur
 
 # Custom shit
 focus_follows_mouse no
-
-# startdunst
-exec --no-startup-id dunst

@@ -1,8 +1,10 @@
 #!/bin/sh
 
-feh --bg-scale --no-fehbg .bg.png
-
-exec i3 
+feh --bg-scale --no-fehbg .bg.png 
+xss-lock -- betterlockscreen -l blur &
+dunst &
+compton &
+exec i3
 
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
