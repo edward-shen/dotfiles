@@ -32,6 +32,9 @@ bindsym $mod+Return exec kitty
 # kill focused window
 bindsym $mod+Shift+q kill
 
+# xkill shortcut
+bindsym --release $mod+Shift+Control+q exec xkill
+
 # Rofi as dmenu
 bindsym $mod+d exec rofi -show run
 
