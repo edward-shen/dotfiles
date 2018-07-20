@@ -11,7 +11,9 @@
 background = #3b3b3b
 foreground = #fff
 foreground-alt = #c555
+; Green
 primary = #3ee57e
+; Orange
 secondary = #fe9e5b
 alert = #ccbd2c40
 wallpaper = #3b3b3b
