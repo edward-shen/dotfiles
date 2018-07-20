@@ -1,4 +1,4 @@
-TERM=xterm-256color
+export TERM=xterm-256color
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -9,7 +9,7 @@ export ZSH=/usr/share/oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="agnoster"
+# ZSH_THEME="agnoster"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -98,6 +98,7 @@ source $ZSH/oh-my-zsh.sh
 # Enable fish highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# Powerlevel 9k theme
 source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
 
 eval $(thefuck --alias)
