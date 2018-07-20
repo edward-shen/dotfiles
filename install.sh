@@ -116,7 +116,7 @@ installgroup FONTS ttf-ms-fonts ttf-opensans ttf-roboto noto-fonts \
   noto-fonts-emoji
 installgroup XORG xorg-server xorg-xinit light xorg-xkill xorg-xinput \
   xorg-xmodmap xterm xss-lock-git xorg-xset xbindkeys wmctrl xdotool xdg-utils \
-  unclutter-xfixes-git perl-file-mimeinfo
+  unclutter-xfixes-git perl-file-mimeinfo capitaine-cursors
 installgroup DESKTOP i3-gaps-next-git libreoffice dunst rofi maim mpv feh \
   mpv-mpris kitty synergy
 installgroup RICE compton polybar betterlockscreen
