@@ -183,3 +183,6 @@ bindsym $mod+grave exec --no-startup-id betterlockscreen -l
 
 # Custom shit
 focus_follows_mouse no
+
+# Bind printscreen to select area to clipboard
+bindsym --release Print exec "maim -s | xclip -selection c -t image/png"
