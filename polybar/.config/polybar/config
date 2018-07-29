@@ -59,8 +59,9 @@ font-3 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-4 = siji:pixelsize=10;1
 
 modules-left = i3
-modules-center = xwindow
-modules-right = isrunning-compton backlight volume wlan eth date
+;modules-center = xwindow
+modules-center = isrunning-compton backlight volume
+modules-right = wlan eth date
 
 tray-position = right
 tray-padding = 2
@@ -167,14 +168,14 @@ interval = 3.0
 format-connected = <label-connected>
 format-connected-underline = ${colors.primary}
 format-connected-padding = 2
-label-connected = %essid%
+label-connected = %essid%: %local_ip% @ %signal%%
 
 [module/eth]
 type = internal/network
 interface = net0
 interval = 3.0
 
-format-connected-underline = #55aa55
+format-connected-underline = ${colors.secondary}
 format-connected-prefix = "ETH"
 format-connected-prefix-foreground = ${colors.foreground-alt}
 label-connected = %local_ip%
