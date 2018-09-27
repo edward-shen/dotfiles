@@ -154,7 +154,8 @@ PROPRIETARY="spotify unrar"
 ################################################################################
 
 # specify home directory just in case it's not run from home dir.
-stow -t ~ dunst git gtk3 i3 kitty neofetch polybar rofi x zsh libinput-gestures
+stow -t ~ dunst git gtk3 i3 kitty neofetch polybar rofi zsh libinput-gestures \
+  x compton
 
 # will throw division by 0 error, that's ok
 betterlockscreen -u ~/.lockbg.png -b 0
