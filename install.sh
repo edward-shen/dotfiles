@@ -62,13 +62,19 @@ sudo rm -f /etc/pacman.d/mirrorlist.pacnew
 # User home directories                                                        #
 ################################################################################
 
-mkdir -p "$HOME/Downloads"
-mkdir -p "$HOME/Documents/repos"
+# Standard user dirs
+mkdir "$HOME/Downloads"
+mkdir "$HOME/Music"
+mkdir "$HOME/Pictures"
+mkdir "$HOME/Videos"
+
+mkdir -p "$HOME/repos"
 mkdir -p "$HOME/Documents/school"
 
 # Some soft links so I can just cd from my home directory
-ln -s "$HOME/Documents/repos" ~/repos
-ln -s "$HOME/Documents/school" ~/school
+ln -s "$HOME/repos" "$HOME/repos"
+ln -s "$HOME/Documents/school" "$HOME/school"
+ln -s "$HOME/repos/dotfiles" "$HOME/dotfiles"
 
 mkdir -p "$HOME/.config"
 mkdir -p "$HOME/.gnupg"
@@ -104,7 +110,8 @@ The following line has an incorrect number of parameters:
 installgroup CORE linux-headers acpi ntp
 installgroup AUDIO pulseaudio pulseaudio-alsa alsa-utils pavucontrol \
   pulseaudio-bluetooth pulseaudio-jack qjackctl
-installgroup NET networkmanager networkmanager-openvpn network-manager-applet
+installgroup NET networkmanager networkmanager-openvpn network-manager-applet \
+  openvpn
 installgroup TOOLS powertop nmap neofetch htop tree stow rmtrash p7zip xclip
 installgroup TEX pandoc texlive-most texstudio
 installgroup SHELL zsh oh-my-zsh zsh-syntax-highlighting zsh-theme-powerlevel9k
@@ -147,7 +154,7 @@ PROPRIETARY="spotify unrar"
 ################################################################################
 
 # specify home directory just in case it's not run from home dir.
-stow -t ~ dunst git gtk3 i3 kitty neofetch polybar rofi x zsh
+stow -t ~ dunst git gtk3 i3 kitty neofetch polybar rofi x zsh libinput-gestures
 
 # will throw division by 0 error, that's ok
 betterlockscreen -u ~/.lockbg.png -b 0
@@ -170,10 +177,15 @@ sudo systemctl enable reflector.timer
 sudo cp unstowables/reflector-timer/reflector.conf \
   /usr/share/reflector-time/reflector.conf
 
+# Systemd configurations
+sudo cp unstowables/systemd/logind.conf /etc/systemd/
+sudo cp unstowables/systemd/system/* /etc/systemd/system/
+
+sudo systemctl enable powertop
+
 ################################################################################
 # SECTION 4                                                                    #
-# -----------------------------------------------------------------------------#
-# Services                                                                     #
+# -----------------------------------------------------------------------------## Services                                                                     #
 ################################################################################
 
 # Networking
