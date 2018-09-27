@@ -125,7 +125,7 @@ installgroup XORG xorg-server xorg-xinit light xorg-xkill xorg-xinput \
   xorg-xmodmap xterm xss-lock-git xorg-xset xbindkeys wmctrl xdotool xdg-utils \
   unclutter-xfixes-git perl-file-mimeinfo capitaine-cursors
 installgroup DESKTOP i3-gaps-next-git libreoffice dunst rofi maim mpv feh \
-  mpv-mpris kitty synergy
+  mpv-mpris kitty synergy libinput libinput-gestures
 installgroup RICE compton polybar betterlockscreen
 # try running xss-lock; if you're missing libasan, install i3-color-git
 installgroup WEB chromium firefox qbittorrent
