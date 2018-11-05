@@ -138,7 +138,7 @@ mode "resize" {
         bindsym Up resize shrink height 10 px or 10 ppt
         bindsym Right resize grow width 10 px or 10 ppt
 
-	# Finer controls
+        # Finer controls
         bindsym Shift+h resize shrink width 5 px or 5 ppt
         bindsym Shift+j resize grow height 5 px or 5 ppt
         bindsym Shift+k resize shrink height 5 px or 5 ppt
@@ -179,7 +179,7 @@ smart_gaps on
 smart_borders on
 
 # Lockscreen stuff
-bindsym $mod+grave exec --no-startup-id betterlockscreen -l
+bindsym XF86PowerOff exec --no-startup-id betterlockscreen -l
 
 # Custom shit
 focus_follows_mouse no
@@ -189,16 +189,16 @@ bindsym --release Print exec "maim -s | xclip -selection c -t image/png"
 
 # Color customizations
 
-set $green	#3EE57E
-set $white	#FFFFFF
-set $orange	#FE9E5B
-set $bg		#3B3B3B
+set $green  #3EE57E
+set $white  #FFFFFF
+set $orange #FE9E5B
+set $bg     #3B3B3B
 
 # Most of these colors won't matter since I've hidden the title, but I think I
 # need to set them anyways for i3 configs to work
 
-# class			border	backgr.	text	indicator	child_border
-client.focused		$green	$bg	$white	$orange		$green	
-#client.focused_inactive	
-client.unfocused	$bg	$bg	$white	$bg		$bg
+# class           border  backgr. text    indicator child_border
+client.focused    $green  $bg     $white  $orange   $green
+#client.focused_inactive
+client.unfocused  $bg     $bg     $white  $bg       $bg
 #client.urgent
