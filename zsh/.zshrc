@@ -82,3 +82,4 @@ export PATH=$PATH:/home/edward/.gem/ruby/2.5.0/bin
 # Aliases
 alias vi="nvim"
 alias vim="nvim"
+alias rm="rm -I"
