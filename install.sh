@@ -68,11 +68,11 @@ mkdir "$HOME/Music"
 mkdir "$HOME/Pictures"
 mkdir "$HOME/Videos"
 
-mkdir -p "$HOME/repos"
+mkdir -p "$HOME/Documents/repos"
 mkdir -p "$HOME/Documents/school"
 
 # Some soft links so I can just cd from my home directory
-ln -s "$HOME/repos" "$HOME/repos"
+ln -s "$HOME/Documents/repos" "$HOME/repos"
 ln -s "$HOME/Documents/school" "$HOME/school"
 ln -s "$HOME/repos/dotfiles" "$HOME/dotfiles"
 
@@ -80,7 +80,7 @@ mkdir -p "$HOME/.config"
 mkdir -p "$HOME/.gnupg"
 chmod 700 "$HOME/.gnupg"
 
-# TODO complete
+# TODO: complete
 
 ################################################################################
 # SECTION 2                                                                    #
@@ -131,6 +131,7 @@ installgroup RICE compton polybar betterlockscreen
 installgroup WEB chromium firefox qbittorrent
 installgroup MESSAGING slack-desktop
 installgroup PDF zathura zathura-pdf-mupdf
+installgroup IDE code
 
 # Languages
 installgroup JAVA openjdk8-doc openjdk8-src jdk8-openjdk \
@@ -141,8 +142,7 @@ installgroup GOOGLELANG dart go
 
 # Packages that often break; installed in section n+1
 # wget and xdg-utils are an opt (but not really) dep of discord.
-# gvfs is used by code to delete files.
-TRY_PKGS="gvfs code wget xdg-utils discord"
+TRY_PKGS="wget xdg-utils discord"
 
 # Packages that are proprietary; installed in section n+1
 PROPRIETARY="spotify unrar"
