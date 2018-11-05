@@ -15,7 +15,8 @@ foreground-alt = #c555
 primary = #3ee57e
 ; Orange
 secondary = #fe9e5b
-alert = #ccbd2c40
+;alert = #ccbd2c40
+alert = #f00
 wallpaper = #3b3b3b
 
 [bar/bottom]
@@ -172,15 +173,16 @@ label-connected = %essid%: %local_ip% @ %signal%%
 
 [module/eth]
 type = internal/network
-interface = net0
+interface = enp62s0u1
 interval = 3.0
 
+format-connected = <label-connected>
 format-connected-underline = ${colors.secondary}
-format-connected-prefix = "ETH"
-format-connected-prefix-foreground = ${colors.foreground-alt}
-label-connected = %local_ip%
+; format-connected-prefix-foreground = ${colors.foreground-alt}
+format-connected-padding = 2
+label-connected = %ifname%: %local_ip% @ %linkspeed%
 
-format-disconnected =
+;format-disconnected =
 ;format-disconnected = <label-disconnected>
 ;format-disconnected-underline = ${self.format-connected-underline}
 ;label-disconnected = %ifname% disconnected
