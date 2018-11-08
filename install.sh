@@ -116,7 +116,8 @@ installgroup AUDIO pulseaudio pulseaudio-alsa alsa-utils pavucontrol \
   pulseaudio-bluetooth pulseaudio-jack qjackctl
 installgroup NET networkmanager networkmanager-openvpn network-manager-applet \
   openvpn
-installgroup TOOLS powertop nmap neofetch htop tree stow p7zip xclip openssh
+installgroup TOOLS powertop nmap neofetch htop tree stow p7zip xclip openssh \
+  neovim
 installgroup TEX pandoc texlive-most texstudio
 installgroup SHELL zsh oh-my-zsh zsh-syntax-highlighting zsh-theme-powerlevel9k
 installgroup FUN cowsay fortune-mod wtf thefuck
@@ -129,13 +130,12 @@ installgroup XORG xorg-server xorg-xinit light xorg-xkill xorg-xinput \
   xorg-xmodmap xterm xss-lock-git xorg-xset xbindkeys wmctrl xdotool xdg-utils \
   unclutter-xfixes-git perl-file-mimeinfo capitaine-cursors
 installgroup DESKTOP i3-gaps-next-git libreoffice dunst rofi maim mpv feh \
-  mpv-mpris kitty synergy libinput libinput-gestures
+  mpv-mpris kitty synergy libinput libinput-gestures code
 installgroup RICE compton polybar betterlockscreen
 # try running xss-lock; if you're missing libasan, install i3-color-git
-installgroup WEB chromium firefox qbittorrent
+installgroup WEB chromium qbittorrent
 installgroup MESSAGING slack-desktop
 installgroup PDF zathura zathura-pdf-mupdf
-installgroup IDE code
 
 # Languages
 installgroup JAVA openjdk8-doc openjdk8-src jdk8-openjdk \
@@ -176,6 +176,10 @@ sudo chsh root -s "$(command -v  zsh)"
 echo -e "
 
 " | ssh-keygen
+
+# libinput-gestures requirement
+sudo gpasswd -a $USER input
+libinput-gestures-setup autostart
 
 # Enable reflector timer
 sudo systemctl enable reflector.timer
@@ -235,3 +239,13 @@ extrapkgs "fun software" "$FUN"
 TIME_DIFF=${$SECONDS-$START_TIME}
 
 echo "Total install time: ${$TIME_DIFF / 3600}hrs ${($TIME_DIFF / 60) % 60}min ${$TIME_DIFF % 60}sec"
+
+echo "Please restart now to complete installation."
+echo "Reboot now?"
+select yn in "Yes" "no"; do
+  case $yn in
+    Yes ) systemctl reboot; break;;
+    No )  break;;
+  esac
+done
+
