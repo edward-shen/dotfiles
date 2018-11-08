@@ -32,17 +32,21 @@ For example, this is a standard single-user config:
 fi
 
 # Force refresh of dbs and install git and reflector, if not present.
-# Also install base-devel, which is needed for aurman.
-yes "" | sudo pacman -Syyu --needed git reflector base-devel
+# Also install base-devel, which is needed for trizen.
+yes "" | sudo pacman -Syyu --needed git reflector base-devel openssh
 
-# Install aurman if not already installed
-if [ ! -f /usr/bin/aurman ]; then
-  git clone https://aur.archlinux.org/aurman.git
-  pushd aurman
+# Install trizen if not already installed
+if [ ! -f /usr/bin/trizen ]; then
+  git clone https://aur.archlinux.org/trizen.git
+  pushd trizen
   yes | makepkg -sri
   popd
-  rm -rf aurman
+  rm -rf trizen
 fi
+
+# We got a lot of things to install, lets install perl-json-xs to make things	
+# a little faster.	
+trizen -Syyu --needed --noconfirm --noinfo --noedit perl-json-xs
 
 # Update our mirrors to find the fastest one.
 echo "Reflection in progress..."
@@ -96,7 +100,7 @@ function installgroup {
   # First input is the title of the group, we can skip it.
   if (( $# != 1 )); then
     shift
-    aurman -Syyu --needed --noedit --noconfirm "$@"
+    trizen -Syyu --needed --noconfirm --noinfo --noedit "$@"
   else
   echo "The install script is malformed.
 The following line has an incorrect number of parameters:
@@ -186,7 +190,8 @@ sudo systemctl enable powertop
 
 ################################################################################
 # SECTION 4                                                                    #
-# -----------------------------------------------------------------------------## Services                                                                     #
+# -----------------------------------------------------------------------------#
+# Services                                                                     #
 ################################################################################
 
 # Networking
@@ -217,7 +222,7 @@ Packages include:
 "
   select yn in "Yes" "No"; do
     case $yn in
-      Yes ) aurman -Syyu --needed --noconfirm --noedit "${*:2}"; break;;
+      Yes ) trizen -Syyu --needed --noconfirm --noinfo --noedit "${*:2}"; break;;
       No ) break;;
     esac
   done
