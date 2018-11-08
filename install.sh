@@ -31,9 +31,9 @@ For example, this is a standard single-user config:
   exit 1
 fi
 
-# Force refresh of dbs and install git and reflector, if not present.
+# Force refresh of DBs and install git and reflector, if not present.
 # Also install base-devel, which is needed for trizen.
-yes "" | sudo pacman -Syyu --needed git reflector base-devel openssh
+yes "" | sudo pacman -Syyu --needed git reflector base-devel
 
 # Install trizen if not already installed
 if [ ! -f /usr/bin/trizen ]; then
@@ -44,8 +44,8 @@ if [ ! -f /usr/bin/trizen ]; then
   rm -rf trizen
 fi
 
-# We got a lot of things to install, lets install perl-json-xs to make things	
-# a little faster.	
+# We got a lot of things to install, lets install perl-json-xs to make things
+# a little faster.
 trizen -Syyu --needed --noconfirm --noinfo --noedit perl-json-xs
 
 # Update our mirrors to find the fastest one.
@@ -116,7 +116,7 @@ installgroup AUDIO pulseaudio pulseaudio-alsa alsa-utils pavucontrol \
   pulseaudio-bluetooth pulseaudio-jack qjackctl
 installgroup NET networkmanager networkmanager-openvpn network-manager-applet \
   openvpn
-installgroup TOOLS powertop nmap neofetch htop tree stow rmtrash p7zip xclip
+installgroup TOOLS powertop nmap neofetch htop tree stow p7zip xclip openssh
 installgroup TEX pandoc texlive-most texstudio
 installgroup SHELL zsh oh-my-zsh zsh-syntax-highlighting zsh-theme-powerlevel9k
 installgroup FUN cowsay fortune-mod wtf thefuck
@@ -168,7 +168,7 @@ betterlockscreen -u ~/.lockbg.png -b 0
 mkdir -p "$HOME/.config/mpv/scripts"
 ln -s /usr/lib/mpv/mpris.so "$HOME/.config/mpv/scripts/mpris.so"
 
-# Set root and current users to use fish as shell
+# Set root and current users to use zsh as shell
 sudo chsh "$USER" -s "$(command -v zsh)"
 sudo chsh root -s "$(command -v  zsh)"
 
