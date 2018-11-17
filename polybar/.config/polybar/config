@@ -178,15 +178,8 @@ interval = 3.0
 
 format-connected = <label-connected>
 format-connected-underline = ${colors.secondary}
-; format-connected-prefix-foreground = ${colors.foreground-alt}
 format-connected-padding = 2
 label-connected = %ifname%: %local_ip% @ %linkspeed%
-
-;format-disconnected =
-;format-disconnected = <label-disconnected>
-;format-disconnected-underline = ${self.format-connected-underline}
-;label-disconnected = %ifname% disconnected
-;label-disconnected-foreground = ${colors.foreground-alt}
 
 [module/date]
 type = internal/date
@@ -199,7 +192,7 @@ time = %H:%M:%S
 label = %date%%time%
 
 [module/volume]
-type = internal/volume
+type = internal/alsa
 
 format-volume = <ramp-volume> <label-volume>
 
@@ -256,8 +249,8 @@ hwmon-path = /sys/devices/virtual/hwmon/hwmon2/temp1_input
 format = <ramp> <label>
 format-warn = <ramp> <label-warn>
 
-label = %temperature%
-label-warn = %temperature%
+label = %temperature-c%
+label-warn = %temperature-c%
 label-warn-foreground = ${colors.alert}
 
 ramp-0 = 
