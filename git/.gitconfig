@@ -1,9 +1,8 @@
 [user]
-	email = 6173958+edward-shen@users.noreply.github.com
+	email = code@eddie.sh
 	name = Edward Shen
 [core]
 	autocrlf = input
-	askpass = 
 [push]
 	default = simple
 [commit]

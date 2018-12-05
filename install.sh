@@ -172,10 +172,9 @@ ln -s /usr/lib/mpv/mpris.so "$HOME/.config/mpv/scripts/mpris.so"
 sudo chsh "$USER" -s "$(command -v zsh)"
 sudo chsh root -s "$(command -v  zsh)"
 
-# Generate SSH key
-echo -e "
-
-" | ssh-keygen
+# Generate SSH keys
+ssh-keygen -t ed25519 -N '' -f "~/.ssh/code@eddie.sh"
+ssh-keygen -N '' -f "~/.ssh/id_rsa" # In case ed25519 key fails.
 
 # libinput-gestures requirement
 sudo gpasswd -a $USER input
@@ -240,6 +239,9 @@ TIME_DIFF=${$SECONDS-$START_TIME}
 
 echo "Total install time: ${$TIME_DIFF / 3600}hrs ${($TIME_DIFF / 60) % 60}min ${$TIME_DIFF % 60}sec"
 
+echo "Please note that the following tasks must be completed independently:"
+echo "\GPG Key generation and addition to respective remote servers"
+
 echo "Please restart now to complete installation."
 echo "Reboot now?"
 select yn in "Yes" "no"; do
@@ -248,4 +250,3 @@ select yn in "Yes" "no"; do
     No )  break;;
   esac
 done
-

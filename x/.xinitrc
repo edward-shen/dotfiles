@@ -1,10 +1,12 @@
 #!/bin/sh
 
-feh --bg-scale --no-fehbg .bg.png
+feh --bg-scale --no-fehbg .bg.png &
 xss-lock -- betterlockscreen -l blur &
 dunst &
 compton &
 libinput-gestures &
+setxkbmap -option compose:rctrl &
+eval $(ssh-agent)
 exec i3
 
 userresources=$HOME/.Xresources
@@ -29,4 +31,3 @@ fi
 if [ -f "$usermodmap" ]; then
     xmodmap "$usermodmap"
 fi
-
