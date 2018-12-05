@@ -140,7 +140,7 @@ installgroup PDF zathura zathura-pdf-mupdf
 # Languages
 installgroup JAVA openjdk8-doc openjdk8-src jdk8-openjdk \
   intellij-idea-ue-bundled-jre
-installgroup JS nodejs yarn
+installgroup JS nodejs yarn nvm
 installgroup PY python # No need for pip, python3 comes with pip
 installgroup GOOGLELANG dart go
 
