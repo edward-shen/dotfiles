@@ -31,6 +31,9 @@ For example, this is a standard single-user config:
   exit 1
 fi
 
+# Enable ntp and wait for sync
+sudo timedatectl set-ntp true
+
 # Force refresh of DBs and install git and reflector, if not present.
 # Also install base-devel, which is needed for trizen.
 yes "" | sudo pacman -Syyu --needed git reflector base-devel
@@ -59,6 +62,9 @@ sudo reflector \
 
 # Remove extraneous file.
 sudo rm -f /etc/pacman.d/mirrorlist.pacnew
+
+# Force refresh of gpg keys in case of date time issues
+sudo pacman-key --populate archlinux
 
 ################################################################################
 # SECTION 1                                                                    #
@@ -200,6 +206,8 @@ sudo systemctl enable powertop
 # Networking
 sudo systemctl enable NetworkManager
 sudo systemctl enable NetworkManager-dispatcher
+
+# NTP daemon
 sudo systemctl enable ntpd
 
 # Mouse support in tty (gpm)
