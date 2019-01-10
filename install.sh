@@ -80,9 +80,9 @@ mkdir -p "$HOME/Documents/repos"
 mkdir -p "$HOME/Documents/school"
 
 # Some soft links so I can just cd from my home directory
-ln -s "$HOME/Documents/repos" "$HOME/repos"
-ln -s "$HOME/Documents/school" "$HOME/school"
-ln -s "$HOME/repos/dotfiles" "$HOME/dotfiles"
+ln -s "$HOME/Documents/repos" "$HOME/repos" || true
+ln -s "$HOME/Documents/school" "$HOME/school" || true
+ln -s "$HOME/repos/dotfiles" "$HOME/dotfiles" || true
 
 mkdir -p "$HOME/.config"
 mkdir -p "$HOME/.gnupg"
