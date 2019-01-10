@@ -124,7 +124,7 @@ installgroup NET networkmanager networkmanager-openvpn network-manager-applet \
 installgroup TOOLS powertop nmap neofetch htop tree stow p7zip xclip openssh \
   neovim bat
 installgroup TEX pandoc texlive-most texstudio
-installgroup SHELL zsh oh-my-zsh zsh-syntax-highlighting zsh-theme-powerlevel9k
+installgroup SHELL zsh oh-my-zsh-git zsh-syntax-highlighting zsh-theme-powerlevel9k
 installgroup FUN cowsay fortune-mod wtf thefuck
 
 # GUI Packages
