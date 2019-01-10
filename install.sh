@@ -33,6 +33,7 @@ fi
 
 # Enable ntp and wait for sync
 sudo timedatectl set-ntp true
+sleep 1s
 
 # Force refresh of DBs and install git and reflector, if not present.
 # Also install base-devel, which is needed for trizen.
