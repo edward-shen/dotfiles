@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Thanks to @kylesferrazza on GitHub for the base of this dot file!
 # Check him out at https://www.kylesferrazza.com
