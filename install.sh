@@ -108,6 +108,7 @@ function installgroup {
   if (( $# != 1 )); then
     shift
     trizen -Syyu --needed --noconfirm --noinfo --noedit "$@"
+    sudo -v
   else
   echo "The install script is malformed.
 The following line has an incorrect number of parameters:
