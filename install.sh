@@ -71,10 +71,10 @@ sudo rm -f /etc/pacman.d/mirrorlist.pacnew
 ################################################################################
 
 # Standard user dirs
-mkdir "$HOME/Downloads"
-mkdir "$HOME/Music"
-mkdir "$HOME/Pictures"
-mkdir "$HOME/Videos"
+mkdir -p "$HOME/Downloads"
+mkdir -p "$HOME/Music"
+mkdir -p "$HOME/Pictures"
+mkdir -p "$HOME/Videos"
 
 mkdir -p "$HOME/Documents/repos"
 mkdir -p "$HOME/Documents/school"
