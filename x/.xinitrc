@@ -5,7 +5,7 @@ xss-lock -- betterlockscreen -l blur &
 dunst &
 compton &
 libinput-gestures &
-setxkbmap -option compose:rctrl &
+setxkbmap -option compose:rctrl
 eval $(ssh-agent)
 exec i3
 
