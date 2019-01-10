@@ -36,7 +36,7 @@ sudo timedatectl set-ntp true
 sleep 1s
 
 # Force refresh of gpg keys in case of date time issues
-sudo pacman-key --populate archlinux
+yes "" | sudo pacman -Syy archlinux-keyring
 
 # Force refresh of DBs and install git and reflector, if not present.
 # Also install base-devel, which is needed for trizen.
