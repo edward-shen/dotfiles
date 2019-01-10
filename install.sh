@@ -35,6 +35,9 @@ fi
 sudo timedatectl set-ntp true
 sleep 1s
 
+# Force refresh of gpg keys in case of date time issues
+sudo pacman-key --populate archlinux
+
 # Force refresh of DBs and install git and reflector, if not present.
 # Also install base-devel, which is needed for trizen.
 yes "" | sudo pacman -Syyu --needed git reflector base-devel
@@ -63,9 +66,6 @@ sudo reflector \
 
 # Remove extraneous file.
 sudo rm -f /etc/pacman.d/mirrorlist.pacnew
-
-# Force refresh of gpg keys in case of date time issues
-sudo pacman-key --populate archlinux
 
 ################################################################################
 # SECTION 1                                                                    #
