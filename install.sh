@@ -143,7 +143,7 @@ installgroup DESKTOP i3-gaps-next-git libreoffice dunst rofi maim mpv feh \
 installgroup RICE compton polybar betterlockscreen
 # try running xss-lock; if you're missing libasan, install i3-color-git
 installgroup WEB chromium qbittorrent
-installgroup MESSAGING slack-desktop
+installgroup MESSAGING riot-desktop signal
 installgroup PDF zathura zathura-pdf-mupdf
 
 # Languages

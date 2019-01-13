@@ -5,6 +5,7 @@ export TERM=xterm-256color
 
 # Path to your oh-my-zsh installation.
 export ZSH=/usr/share/oh-my-zsh
+export ZSH_CACHE_DIR="$HOME/.cache/zsh"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -85,3 +86,5 @@ alias vim="nvim"
 alias rm="rm -I"
 
 source /usr/share/nvm/init-nvm.sh
+
+
