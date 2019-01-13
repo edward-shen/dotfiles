@@ -200,6 +200,8 @@ sudo cp unstowables/systemd/system/* /etc/systemd/system/
 
 sudo systemctl enable powertop
 
+sudo sysctl kernel.sysrq=1
+
 ################################################################################
 # SECTION 4                                                                    #
 # -----------------------------------------------------------------------------#
