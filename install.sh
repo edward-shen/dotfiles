@@ -28,16 +28,19 @@ For example, this is a standard single-user config:
   exit 1
 fi
 
+# Install sudo as it's pretty important
+su -c "yes \"\" | pacman -Syu sudo"
+
 # Enable ntp and wait for sync
 sudo timedatectl set-ntp true
 sleep 1s
 
 # Force refresh of gpg keys in case of date time issues
-yes "" | sudo pacman -Syy archlinux-keyring
+yes "" | sudo pacman -S archlinux-keyring
 
 # Force refresh of DBs and install git and reflector, if not present.
 # Also install base-devel, which is needed for trizen.
-yes "" | sudo pacman -Syyu --needed git reflector base-devel
+yes "" | sudo pacman -S --needed git reflector base-devel
 
 # Install trizen if not already installed
 if [ ! -f /usr/bin/trizen ]; then
@@ -50,7 +53,7 @@ fi
 
 # We got a lot of things to install, lets install perl-json-xs to make things
 # a little faster.
-trizen -Syyu --needed --noconfirm --noinfo --noedit perl-json-xs
+trizen -S --needed --noconfirm --noinfo --noedit perl-json-xs
 
 # Update our mirrors to find the fastest one.
 echo "Reflection in progress..."
@@ -75,6 +78,7 @@ mkdir -p "$HOME/Downloads"
 mkdir -p "$HOME/Music"
 mkdir -p "$HOME/Pictures"
 mkdir -p "$HOME/Videos"
+mkdir -p "$HOME/.config"
 
 mkdir -p "$HOME/Documents/repos"
 mkdir -p "$HOME/Documents/school"
@@ -104,7 +108,7 @@ function installgroup {
   # First input is the title of the group, we can skip it.
   if (( $# != 1 )); then
     shift
-    trizen -Syyu --needed --noconfirm --noinfo --noedit "$@"
+    trizen -S --needed --noconfirm --noinfo --noedit "$@"
     sudo -v
   else
   echo "The install script is malformed.
@@ -116,7 +120,7 @@ The following line has an incorrect number of parameters:
 }
 
 # CLI Packages
-installgroup CORE linux-headers acpi ntp
+installgroup CORE linux-headers acpi ntp reflector-timer
 installgroup AUDIO pulseaudio pulseaudio-alsa alsa-utils pavucontrol \
   pulseaudio-bluetooth pulseaudio-jack qjackctl
 installgroup NET networkmanager networkmanager-openvpn network-manager-applet \
@@ -163,7 +167,7 @@ PROPRIETARY="spotify unrar"
 ################################################################################
 
 # specify home directory just in case it's not run from home dir.
-stow -t ~ dunst git gtk3 i3 kitty neofetch polybar rofi zsh libinput-gestures \
+stow --adopt -t "$HOME" -R dunst git gtk3 i3 kitty neofetch polybar rofi zsh libinput-gestures \
   x compton ssh scripts
 
 # will throw division by 0 error, that's ok
@@ -171,15 +175,15 @@ betterlockscreen -u ~/.lockbg.png -b 0
 
 # mpv-mpris
 mkdir -p "$HOME/.config/mpv/scripts"
-ln -s /usr/lib/mpv/mpris.so "$HOME/.config/mpv/scripts/mpris.so"
+ln -s /usr/lib/mpv/mpris.so "$HOME/.config/mpv/scripts/mpris.so" || true
 
 # Set root and current users to use zsh as shell
 sudo chsh "$USER" -s "$(command -v zsh)"
 sudo chsh root -s "$(command -v  zsh)"
 
 # Generate SSH keys
-ssh-keygen -t ed25519 -N '' -f "~/.ssh/code@eddie.sh"
-ssh-keygen -N '' -f "~/.ssh/id_rsa" # In case ed25519 key fails.
+echo "n\n" | ssh-keygen -t ed25519 -N '' -f "$HOME/.ssh/code@eddie.sh"
+echo "n\n" | ssh-keygen -N '' -f "$HOME/.ssh/id_rsa" # In case ed25519 key fails.
 
 # libinput-gestures requirement
 sudo gpasswd -a $USER input
@@ -188,7 +192,7 @@ libinput-gestures-setup autostart
 # Enable reflector timer
 sudo systemctl enable reflector.timer
 sudo cp unstowables/reflector-timer/reflector.conf \
-  /usr/share/reflector-time/reflector.conf
+  /usr/share/reflector-timer/reflector.conf
 
 # Systemd configurations
 sudo cp unstowables/systemd/logind.conf /etc/systemd/
@@ -232,7 +236,7 @@ Packages include:
 "
   select yn in "Yes" "No"; do
     case $yn in
-      Yes ) trizen -Syyu --needed --noconfirm --noinfo --noedit "${*:2}"; break;;
+      Yes ) trizen -S --needed --noconfirm --noinfo --noedit "${*:2}"; break;;
       No ) break;;
     esac
   done
@@ -253,7 +257,7 @@ echo "Please restart now to complete installation."
 echo "Reboot now?"
 select yn in "Yes" "no"; do
   case $yn in
-    Yes ) systemctl reboot; break;;
+    Yes ) systemctl reboot
     No )  break;;
   esac
 done
