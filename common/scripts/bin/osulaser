@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+export LD_LIBRARY_PATH="/home/edward/repos/osu/osu.Desktop/bin/Debug/netcoreapp2.2"
+dotnet run --project /home/edward/repos/osu/osu.Desktop
