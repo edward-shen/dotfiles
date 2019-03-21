@@ -79,6 +79,7 @@ eval $(thefuck --alias)
 
 # PATH exports
 export PATH=$PATH:/home/edward/bin:/home/edward/.gem/ruby/2.5.0/bin
+export PATH=$PATH:/home/edward/.cargo/bin
 
 # Aliases
 alias vi="nvim"
@@ -87,4 +88,5 @@ alias rm="rm -I"
 
 source /usr/share/nvm/init-nvm.sh
 
+export MAKEFLAGS="-j 8"
 

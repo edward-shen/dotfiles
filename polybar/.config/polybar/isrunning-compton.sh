@@ -5,7 +5,7 @@ case "$1" in
         if [ "$(pgrep -x compton)" ]; then
             pkill compton
         else
-            compton -b --config ~/.config/compton/compton.conf
+		(compton --config ~/.config/compton/compton.conf &) &
         fi
         ;;
     *)
