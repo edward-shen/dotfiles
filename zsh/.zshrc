@@ -89,4 +89,5 @@ alias rm="rm -I"
 source /usr/share/nvm/init-nvm.sh
 
 export MAKEFLAGS="-j 8"
+export DOTNET_CLI_TELEMETRY_OPTOUT=0
 

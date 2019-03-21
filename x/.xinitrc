@@ -4,8 +4,9 @@ feh --bg-scale --no-fehbg ~/.bg.png &
 xss-lock -- betterlockscreen -l blur &
 dunst &
 compton --config ~/.config/compton/compton.conf &
-tabletosu
-setxkbmap -option compose:rctrl &
+osu-tablet
+libinput-gestures &
+setxkbmap -option compose:rctrl
 eval $(ssh-agent) &
 exec i3
 
