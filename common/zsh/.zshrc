@@ -78,14 +78,13 @@ POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
 eval $(thefuck --alias)
 
 # PATH exports
-export PATH=$PATH:/home/edward/.cargo/bin
+export PATH=$PATH:/home/edward/bin:/home/edward/.gem/ruby/2.5.0/bin
 
 # Aliases
 alias vi="nvim"
 alias vim="nvim"
 alias rm="rm -I"
 
-# source /usr/share/nvm/init-nvm.sh
+source /usr/share/nvm/init-nvm.sh
 
-export DOTNET_CLI_TELEMETRY_OPTOUT=0
 
