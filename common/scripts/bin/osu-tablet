@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-
-xsetwacom set "UGEE DECO 01 Pen stylus" MapToOutput DisplayPort-6 &
-xsetwacom set "UGEE DECO 01 Pen stylus" Area 2560 5500 9680 9440 &

@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-# This is a script to just connect to Hastings 804 wireless network
-
-nmcli con up "Hastings 804"

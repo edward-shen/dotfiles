@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-export WINEPREFIX="$HOME/.wine_osu"
-wineserver -k
