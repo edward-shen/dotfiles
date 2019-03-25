@@ -186,6 +186,7 @@ focus_follows_mouse no
 
 # Bind printscreen to select area to clipboard
 bindsym --release Print exec --no-startup-id "maim -s | xclip -selection c -t image/png"
+bindsym --release Shift+Print exec --no-startup-id "maim -s '/home/edward/Pictures/maim-'$(date +%s)'.png'"
 
 # Color customizations
 

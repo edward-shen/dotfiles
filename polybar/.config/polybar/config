@@ -22,6 +22,7 @@ module-margin = 2
 
 font-0 = "Source Code Pro for Powerline:pixelsize=10;2"
 font-1 = "FontAwesome;3"
+font-2 = "IPAGothic"
 
 modules-left = xkeyboard
 modules-right = player-mpris-tail battery temperature memory cpu filesystem
@@ -75,7 +76,9 @@ interval = 25
 spacing = 3
 
 mount-0 = /
-mount-1 = /home
+mount-1 = /amnt/backup
+mount-2 = /amnt/data1
+mount-3 = /amnt/weeb
 
 label-mounted = %{F#fe9e5b}%mountpoint%%{F-} %percentage_used%%
 
@@ -245,6 +248,7 @@ margin-top = 5
 margin-bottom = 5
 
 ; Custom polybar scripts -----------------------------
+
 [module/player-mpris-tail]
 type = custom/script
 exec = ~/.config/polybar/player-mpris-tail.py

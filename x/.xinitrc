@@ -1,14 +1,13 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 feh --bg-scale --no-fehbg ~/.bg.png &
 xss-lock -- betterlockscreen -l blur &
 dunst &
 compton --config ~/.config/compton/compton.conf &
+osu-tablet
 libinput-gestures &
-xsetwacom set "UGEE DECO 01 Pen stylus" MapToOutput DP-1-1
-xsetwacom set "UGEE DECO 01 Pen stylus" Area 2560 5500 7680 8440
 setxkbmap -option compose:rctrl
-eval $(ssh-agent)
+eval $(ssh-agent) &
 exec i3
 
 userresources=$HOME/.Xresources
