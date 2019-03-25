@@ -76,9 +76,7 @@ interval = 25
 spacing = 3
 
 mount-0 = /
-mount-1 = /amnt/backup
-mount-2 = /amnt/data1
-mount-3 = /amnt/weeb
+mount-1 = /home
 
 label-mounted = %{F#fe9e5b}%mountpoint%%{F-} %percentage_used%%
 

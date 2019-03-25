@@ -79,6 +79,7 @@ eval $(thefuck --alias)
 
 # PATH exports
 export PATH=$PATH:/home/edward/.cargo/bin
+export PATH=$PATH:/home/edward/bin
 
 # Aliases
 alias vi="nvim"
