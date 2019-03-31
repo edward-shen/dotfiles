@@ -78,7 +78,6 @@ POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
 eval $(thefuck --alias)
 
 # PATH exports
-export PATH=$PATH:/home/edward/bin:/home/edward/.gem/ruby/2.5.0/bin
 export PATH=$PATH:/home/edward/.cargo/bin
 
 # Aliases

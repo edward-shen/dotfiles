@@ -263,7 +263,7 @@ click-left = ~/.config/polybar/isrunning-compton.sh --toggle
 
 [module/vpn]
 type = custom/script
-exec = echo "OpenVPN: $(nmcli | grep "VPN " | sed "s/ *VPN.*//")"
+exec = echo "OpenVPN: $(vpn-names)"
 exec-if = nmcli | grep "VPN "
 interval = 5
 format-underline = ${colors.secondary}
