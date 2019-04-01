@@ -11,7 +11,7 @@
     red:                         #eb6969;
     orange:                      #fe9c5b;
     green:                       #3ee57e;
-    foreground: @text-color;
+    foreground:                  @text-color;
 
     bordercolor:                 @foreground;
     separatorcolor:              @orange;
@@ -48,7 +48,6 @@
 #window {
     border:     0;
     text-color: @foreground;
-    background-color: rgba ( 0, 0, 0, 0 % );
     padding:    5;
     text-color: @bordercolor;
     background-color: @background;
@@ -148,8 +147,8 @@
 }
 
 #textbox-prompt-colon {
-    expand:     false;
-    str:        ":";
-    margin:     0px 0.3em 0em 0em ;
-    text-color: @normal-foreground;
+expand:     false;
+str:        ":";
+margin:     0px 0.3em 0em 0em ;
+            text-color: @normal-foreground;
 }
