@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+# Sane bash mode with no clobber enabled
+set -Ceuxo pipefail
+
+for arg in "$@"; do
+	echo "#!/usr/bin/env python3\n" > "$arg"
+	chmod +x "$arg"
+done
