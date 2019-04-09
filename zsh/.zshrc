@@ -1,52 +1,30 @@
 export TERM=xterm-256color
 
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-# Path to your oh-my-zsh installation.
-export ZSH=/usr/share/oh-my-zsh
-export ZSH_CACHE_DIR="$HOME/.cache/zsh"
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# ZSH config
+DISABLE_AUTO_UPDATE="true"
+COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="yyyy-mm-dd"
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-plugins=(
-  git
-)
+# Check compinit only once a day, should make loading faster
+autoload -Uz compinit
+for dump in ~/.zcompdump(N.mh+24); do
+  compinit
+done
+compinit -C
 
+# Oh-my-zsh config
+export ZSH=/usr/share/oh-my-zsh
+export ZSH_CACHE_DIR="$HOME/.cache/zsh"
+# plugins can be found in ~/.oh-my-zsh/plugins/*
+plugins=(git)
 source $ZSH/oh-my-zsh.sh
-
-# User configuration
 
 # Enable fish highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Powerlevel 9k theme
-source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
+# Using Powerlevel 10k because faster
+source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 # Powerlevel 9k config
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs time)
@@ -86,8 +64,19 @@ alias vi="nvim"
 alias vim="nvim"
 alias rm="rm -I"
 
-source /usr/share/nvm/init-nvm.sh
+# Lazy-load nvm, node
+# https://www.reddit.com/r/node/comments/4tg5jg/lazy_load_nvm_for_faster_shell_start/d5ib9fs/
+declare -a NODE_GLOBALS=(`find ~/.nvm/versions/node -maxdepth 3 -type l -wholename '*/bin/*' | xargs -n1 basename | sort | uniq`)
+NODE_GLOBALS+=("node")
+NODE_GLOBALS+=("nvm")
+load_nvm () {
+    export NVM_DIR=~/.nvm
+    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+}
+for cmd in "${NODE_GLOBALS[@]}"; do
+    eval "${cmd}(){ unset -f ${NODE_GLOBALS}; load_nvm; ${cmd} \$@ }"
+done
 
+# Make make go fast, use 8 threads
 export MAKEFLAGS="-j 8"
-export DOTNET_CLI_TELEMETRY_OPTOUT=0
 
