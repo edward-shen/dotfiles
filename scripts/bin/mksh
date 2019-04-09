@@ -4,6 +4,6 @@
 set -Ceuo pipefail
 
 for arg in "$@"; do
-	echo "#!/usr/bin/env python3" > "$arg"
+	echo "#!/usr/bin/env bash" > "$arg"
 	chmod +x "$arg"
 done
