@@ -128,7 +128,7 @@ installgroup NET networkmanager networkmanager-openvpn network-manager-applet \
 installgroup TOOLS powertop nmap neofetch htop tree stow p7zip xclip openssh \
   neovim bat
 installgroup TEX pandoc texlive-most texstudio
-installgroup SHELL zsh oh-my-zsh-git zsh-syntax-highlighting zsh-theme-powerlevel9k
+installgroup SHELL zsh oh-my-zsh-git zsh-syntax-highlighting zsh-theme-powerlevel10k-git
 installgroup FUN cowsay fortune-mod wtf thefuck
 
 # GUI Packages
@@ -142,7 +142,7 @@ installgroup DESKTOP i3-gaps-next-git libreoffice dunst rofi maim mpv feh \
   mpv-mpris alacritty synergy libinput libinput-gestures code
 installgroup RICE compton polybar betterlockscreen
 # try running xss-lock; if you're missing libasan, install i3-color-git
-installgroup WEB chromium qbittorrent
+installgroup WEB firefox qbittorrent
 installgroup MESSAGING riot-desktop signal
 installgroup PDF zathura zathura-pdf-mupdf
 
@@ -167,8 +167,8 @@ PROPRIETARY="spotify unrar"
 ################################################################################
 
 # specify home directory just in case it's not run from home dir.
-stow --adopt -t "$HOME" -R dunst git gtk3 i3 kitty neofetch polybar rofi zsh libinput-gestures \
-  x compton ssh scripts
+stow --adopt -t "$HOME" -R dunst git gtk3 i3 alacritty neofetch polybar rofi \
+  zsh ibinput-gestures x compton ssh scripts
 
 # will throw division by 0 error, that's ok
 betterlockscreen -u ~/.lockbg.png -b 0
