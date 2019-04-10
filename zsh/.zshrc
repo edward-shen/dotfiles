@@ -63,6 +63,7 @@ export PATH=$PATH:/home/edward/bin
 alias vi="nvim"
 alias vim="nvim"
 alias rm="rm -I"
+alias pdf="zathura --fork"
 
 # Lazy-load nvm, node
 # https://www.reddit.com/r/node/comments/4tg5jg/lazy_load_nvm_for_faster_shell_start/d5ib9fs/
