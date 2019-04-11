@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+nmcli | grep "VPN connection" | sed -n -e 's/ VPN.*//;H;${x;s/\n/, /g;s/^, //;p;}'
