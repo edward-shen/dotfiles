@@ -2,7 +2,7 @@
 
 ################################################################################
 # SECTION 0                                                                    #
-# -----------------------------------------------------------------------------#
+# ---------------------------------------------------------------------------- #
 # Meta-script initialization                                                   #
 ################################################################################
 
@@ -96,7 +96,7 @@ chmod 700 "$HOME/.gnupg"
 
 ################################################################################
 # SECTION 2                                                                    #
-# -----------------------------------------------------------------------------#
+# ---------------------------------------------------------------------------- #
 # Packages to install                                                          #
 ################################################################################
 
@@ -133,7 +133,7 @@ installgroup FUN cowsay fortune-mod wtf thefuck
 
 # GUI Packages
 installgroup FONTS ttf-ms-fonts ttf-opensans ttf-roboto noto-fonts \
-  powerline-fonts-git ttf-font-awesome-4 ttf-fira-code ttf-dejavu \
+  adobe-source-code-pro-fonts ttf-font-awesome-4 ttf-fira-code ttf-dejavu \
   noto-fonts-emoji
 installgroup XORG xorg-server xorg-xinit light xorg-xkill xorg-xinput \
   xorg-xmodmap xterm xss-lock-git xorg-xset xbindkeys wmctrl xdotool xdg-utils \
@@ -141,7 +141,6 @@ installgroup XORG xorg-server xorg-xinit light xorg-xkill xorg-xinput \
 installgroup DESKTOP i3-gaps-next-git libreoffice dunst rofi maim mpv feh \
   mpv-mpris alacritty synergy libinput libinput-gestures code
 installgroup RICE compton polybar betterlockscreen
-# try running xss-lock; if you're missing libasan, install i3-color-git
 installgroup WEB firefox qbittorrent
 installgroup MESSAGING riot-desktop signal
 installgroup PDF zathura zathura-pdf-mupdf
@@ -151,7 +150,8 @@ installgroup JAVA openjdk8-doc openjdk8-src jdk8-openjdk \
   intellij-idea-ue-bundled-jre
 installgroup JS nodejs yarn nvm
 installgroup PY python # No need for pip, python3 comes with pip
-installgroup GOOGLELANG dart go
+installgroup GOOGLELANG go
+installgroup RUST rustup
 
 # Packages that often break; installed in section n+1
 # wget and xdg-utils are an opt (but not really) dep of discord.
@@ -162,7 +162,7 @@ PROPRIETARY="spotify unrar"
 
 ################################################################################
 # SECTION 3                                                                    #
-# -----------------------------------------------------------------------------#
+# ---------------------------------------------------------------------------- #
 # Configuration                                                                #
 ################################################################################
 
@@ -179,20 +179,15 @@ ln -s /usr/lib/mpv/mpris.so "$HOME/.config/mpv/scripts/mpris.so" || true
 
 # Set root and current users to use zsh as shell
 sudo chsh "$USER" -s "$(command -v zsh)"
-sudo chsh root -s "$(command -v  zsh)"
+sudo chsh root -s "$(command -v zsh)"
 
 # Generate SSH keys
-echo "n\n" | ssh-keygen -t ed25519 -N '' -f "$HOME/.ssh/code@eddie.sh"
-echo "n\n" | ssh-keygen -N '' -f "$HOME/.ssh/id_rsa" # In case ed25519 key fails.
+printf "n\n" | ssh-keygen -t ed25519 -N '' -f "$HOME/.ssh/code@eddie.sh"
+printf "n\n" | ssh-keygen -N '' -f "$HOME/.ssh/id_rsa" # In case ed25519 key fails.
 
 # libinput-gestures requirement
-sudo gpasswd -a $USER input
+sudo gpasswd -a "$USER" input
 libinput-gestures-setup autostart
-
-# Enable reflector timer
-sudo systemctl enable reflector.timer
-sudo cp unstowables/reflector-timer/reflector.conf \
-  /usr/share/reflector-timer/reflector.conf
 
 # Systemd configurations
 sudo cp unstowables/systemd/logind.conf /etc/systemd/
@@ -200,11 +195,16 @@ sudo cp unstowables/systemd/system/* /etc/systemd/system/
 
 sudo systemctl enable powertop
 
+# Enable System Request key
 sudo sysctl kernel.sysrq=1
+
+# Rust config
+rustup toolchain install stable nightly
+rustup default stable
 
 ################################################################################
 # SECTION 4                                                                    #
-# -----------------------------------------------------------------------------#
+# ---------------------------------------------------------------------------- #
 # Services                                                                     #
 ################################################################################
 
@@ -218,11 +218,14 @@ sudo systemctl enable ntpd
 # Mouse support in tty (gpm)
 sudo systemctl enable gpm
 
-# TODO: add in cron job for updating mirrors
+# Enable reflector timer
+sudo systemctl enable reflector.timer
+sudo cp unstowables/reflector-timer/reflector.conf \
+  /usr/share/reflector-timer/reflector.conf
 
 ################################################################################
 # SECTION n+1                                                                  #
-# -----------------------------------------------------------------------------#
+# ---------------------------------------------------------------------------- #
 # Extra things                                                                 #
 ################################################################################
 
@@ -259,7 +262,7 @@ echo "Please restart now to complete installation."
 echo "Reboot now?"
 select yn in "Yes" "no"; do
   case $yn in
-    Yes ) systemctl reboot
+    Yes ) systemctl reboot;;
     No )  break;;
   esac
 done

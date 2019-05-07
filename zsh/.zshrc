@@ -57,6 +57,7 @@ eval $(thefuck --alias)
 # PATH exports
 export PATH=$PATH:/home/edward/.cargo/bin
 export PATH=$PATH:/home/edward/bin
+export PATH=$PATH:/home/edward/.gem/ruby/2.6.0/bin
 
 # Aliases
 alias vi="nvim"

@@ -20,7 +20,7 @@ padding = 2
 
 module-margin = 2
 
-font-0 = "Source Code Pro for Powerline:pixelsize=10;2"
+font-0 = "Source Code Pro:pixelsize=10;2"
 font-1 = "FontAwesome;3"
 font-2 = "IPAGothic"
 
@@ -44,11 +44,9 @@ padding-right = 2
 
 module-margin = 1
 
-font-0 = "Source Code Pro for Powerline:pixelsize=10;1"
-font-1 = "FontAwesome;2"
-font-2 = fixed:pixelsize=10;3
-font-3 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-4 = siji:pixelsize=10;1
+font-0 = "Source Code Pro:pixelsize=10;2"
+font-1 = "FontAwesome;3"
+font-2 = "IPAGothic"
 
 modules-left = i3
 modules-center = isrunning-compton backlight volume
@@ -261,7 +259,7 @@ click-left = ~/.config/polybar/isrunning-compton.sh --toggle
 
 [module/vpn]
 type = custom/script
-exec = echo "OpenVPN: $(vpn-names)"
+exec = echo " $(vpn-names)"
 exec-if = nmcli | grep "VPN "
 interval = 5
 format-underline = ${colors.secondary}
