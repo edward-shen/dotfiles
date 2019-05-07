@@ -1,11 +1,13 @@
 #!/bin/sh
 
-case "$1" in
+set -eu
+
+case "${1:-}" in
     --toggle)
         if [ "$(pgrep -x compton)" ]; then
             pkill compton
         else
-		(compton --config ~/.config/compton/compton.conf &) &
+            compton -b --config ~/.config/compton/compton.conf
         fi
         ;;
     *)

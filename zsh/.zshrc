@@ -2,7 +2,6 @@ export TERM=xterm-256color
 
 # ZSH config
 DISABLE_AUTO_UPDATE="true"
-COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="yyyy-mm-dd"
 
 # Check compinit only once a day, should make loading faster
@@ -64,6 +63,7 @@ alias vi="nvim"
 alias vim="nvim"
 alias rm="rm -I"
 alias pdf="zathura --fork"
+alias sl="ls"
 
 # Lazy-load nvm, node
 # https://www.reddit.com/r/node/comments/4tg5jg/lazy_load_nvm_for_faster_shell_start/d5ib9fs/
