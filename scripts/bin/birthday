@@ -2,7 +2,6 @@
 #
 # Prints out a little message if today is the birthday of your machine.
 
-
 birth_second="$(stat / -c '%w')"
 
 if [ "$birth_second" = "-" ]; then
