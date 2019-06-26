@@ -82,3 +82,5 @@ done
 # Make make go fast, use 8 threads
 export MAKEFLAGS="-j 8"
 
+# Print a little message if it's my machine's birthday
+birthday

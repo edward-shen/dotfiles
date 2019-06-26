@@ -1,0 +1,22 @@
+#!/usr/bin/env sh
+#
+# Prints out a little message if today is the birthday of your machine.
+
+
+birth_second="$(stat / -c '%w')"
+
+if [ "$birth_second" = "-" ]; then
+  echo "Your operating system doesn't know its birthday. :("
+  exit 1
+fi
+
+if [ "$(date -I -d "$birth_second")" = "$(date -I)" ]; then
+  age=$(("$(date "+%Y")" - "$(date -d "$birth_second" "+%Y")"))
+  msg="It's my birthday! I'm $age years old! <3"
+
+  if command -v lolcat > /dev/null; then
+    echo "$msg" | lolcat
+  else
+    echo "$msg"
+  fi
+fi
