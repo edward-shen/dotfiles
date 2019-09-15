@@ -130,6 +130,7 @@ installgroup TOOLS powertop nmap neofetch htop tree stow p7zip xclip openssh \
 installgroup TEX pandoc texlive-most texstudio
 installgroup SHELL zsh oh-my-zsh-git zsh-syntax-highlighting zsh-theme-powerlevel10k-git
 installgroup FUN cowsay fortune-mod wtf thefuck
+installgroup MFA ccid opensc yubikey-manager yubikey-pam yubikey-personalization-gui
 
 # GUI Packages
 installgroup FONTS ttf-ms-fonts ttf-opensans ttf-roboto noto-fonts \
