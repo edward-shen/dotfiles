@@ -9,6 +9,11 @@ if [ "$birth_second" = "-" ]; then
   exit 1
 fi
 
+if [ "$1" = "-b" ] || [ "$1" = "birthday" ]; then
+  echo "$(date -I -d "$birth_second")"
+  exit
+fi
+
 if [ "$(date -I -d "$birth_second")" = "$(date -I)" ]; then
   age=$(("$(date "+%Y")" - "$(date -d "$birth_second" "+%Y")"))
   msg="It's my birthday! I'm $age years old! <3"
