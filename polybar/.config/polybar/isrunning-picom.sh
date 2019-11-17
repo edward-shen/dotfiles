@@ -5,7 +5,7 @@ case "$1" in
         if [ "$(pgrep -x picom)" ]; then
             pkill picom
         else
-		(picom --config ~/.config/picom/picom.conf &) &
+            (picom &) &
         fi
         ;;
     *)
