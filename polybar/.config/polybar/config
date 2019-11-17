@@ -76,7 +76,7 @@ interval = 25
 spacing = 3
 
 mount-0 = /
-mount-1 = /home
+mount-1 = /amnt/ssd
 
 label-mounted = %{F#fe9e5b}%mountpoint%%{F-} %percentage_used%%
 
@@ -139,7 +139,7 @@ label = %percentage_used%%
 
 [module/wlan]
 type = internal/network
-interface = wlp2s0
+interface = wlp5s0
 interval = 3.0
 
 format-connected = <label-connected>
@@ -149,7 +149,7 @@ label-connected = %essid%: %local_ip% @ %signal%%
 
 [module/eth]
 type = internal/network
-interface = enp62s0u1
+interface = enp4s0
 interval = 3.0
 
 format-connected = <label-connected>
@@ -171,7 +171,7 @@ label = %date% %time%
 type = internal/alsa
 
 format-volume = <ramp-volume> <label-volume>
-
+use-ui-max=true
 ramp-volume-0 = 
 ramp-volume-1 = 
 ramp-volume-2 = 
@@ -220,7 +220,9 @@ type = internal/temperature
 thermal-zone = 0
 warn-temperature = 60
 
-hwmon-path = /sys/devices/virtual/hwmon/hwmon2/temp1_input
+# Use `sensors` to correlate input
+# We use junction temp because that's the most accurate
+hwmon-path = /sys/class/hwmon/hwmon2/temp2_input
 
 format = <ramp> <label>
 format-warn = <ramp> <label-warn>
