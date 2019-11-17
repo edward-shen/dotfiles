@@ -51,7 +51,7 @@ font-3 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-4 = siji:pixelsize=10;1
 
 modules-left = i3
-modules-center = isrunning-compton backlight volume
+modules-center = isrunning-picom backlight volume
 modules-right = vpn wlan eth date
 
 tray-position = right
@@ -252,12 +252,12 @@ type = custom/script
 exec = ~/.config/polybar/player-mpris-tail.py
 tail = true
 
-[module/isrunning-compton]
+[module/isrunning-picom]
 type = custom/script
-exec = ~/.config/polybar/isrunning-compton.sh
+exec = ~/.config/polybar/isrunning-picom.sh
 format-padding = 2
 interval = 5
-click-left = ~/.config/polybar/isrunning-compton.sh --toggle
+click-left = ~/.config/polybar/isrunning-picom.sh --toggle
 
 [module/vpn]
 type = custom/script

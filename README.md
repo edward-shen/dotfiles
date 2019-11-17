@@ -22,7 +22,7 @@ The theme is based off of the wallpaper, which is a vectored work of someone's r
   - Java
   - Intellij Java (With Intellij Ultimate edition)
   - Node (and Yarn)
-- compton
+- picom
 
 ## Notable behavior
 The following configs will be prompted during the installation:

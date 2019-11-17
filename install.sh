@@ -140,7 +140,7 @@ installgroup XORG xorg-server xorg-xinit light xorg-xkill xorg-xinput \
   unclutter-xfixes-git perl-file-mimeinfo capitaine-cursors
 installgroup DESKTOP i3-gaps-next-git libreoffice dunst rofi maim mpv feh \
   mpv-mpris alacritty synergy libinput libinput-gestures code
-installgroup RICE compton polybar betterlockscreen
+installgroup RICE picom polybar betterlockscreen
 # try running xss-lock; if you're missing libasan, install i3-color-git
 installgroup WEB firefox qbittorrent
 installgroup MESSAGING riot-desktop signal
@@ -168,7 +168,7 @@ PROPRIETARY="spotify unrar"
 
 # specify home directory just in case it's not run from home dir.
 stow --adopt -t "$HOME" -R dunst git gtk3 i3 alacritty neofetch polybar rofi \
-  zsh ibinput-gestures x compton ssh scripts
+  zsh ibinput-gestures x picom ssh scripts
 
 # will throw division by 0 error, that's ok
 betterlockscreen -u ~/.lockbg.png -b 0
