@@ -169,9 +169,15 @@ label = %date% %time%
 
 [module/volume]
 type = internal/alsa
-
 format-volume = <ramp-volume> <label-volume>
+
+# This is pulseaudio control
 use-ui-max=true
+
+# This feels like this is wrong
+master-soundcard = hw:2
+master-mixer = PCM
+
 ramp-volume-0 = 
 ramp-volume-1 = 
 ramp-volume-2 = 
@@ -222,7 +228,7 @@ warn-temperature = 60
 
 # Use `sensors` to correlate input
 # We use junction temp because that's the most accurate
-hwmon-path = /sys/class/hwmon/hwmon2/temp2_input
+hwmon-path = /sys/class/hwmon/hwmon0/temp1_input
 
 format = <ramp> <label>
 format-warn = <ramp> <label-warn>

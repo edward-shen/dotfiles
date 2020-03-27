@@ -181,6 +181,9 @@ smart_borders on
 # Lockscreen stuff
 bindsym XF86PowerOff exec --no-startup-id betterlockscreen -l
 
+# Lock screen
+bindsym $mod+Pause exec loginctl lock-session
+
 # Custom shit
 focus_follows_mouse no
 

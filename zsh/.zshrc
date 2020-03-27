@@ -2,7 +2,7 @@ export TERM=xterm-256color
 
 # ZSH config
 DISABLE_AUTO_UPDATE="true"
-COMPLETION_WAITING_DOTS="true"
+# COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="yyyy-mm-dd"
 
 # Check compinit only once a day, should make loading faster
@@ -21,6 +21,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Enable fish highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/doc/pkgfile/command-not-found.zsh
 
 # Powerlevel 9k theme
 # Using Powerlevel 10k because faster
@@ -79,5 +80,6 @@ for cmd in "${NODE_GLOBALS[@]}"; do
 done
 
 # Make make go fast, use 8 threads
-export MAKEFLAGS="-j 8"
+export MAKEFLAGS="-j 16"
 
+export PATH_OF_EXILE_PATH='/home/edward/.local/share/Steam/steamapps/compatdata/238960/pfx/drive_c/users/steamuser/My Documents/My Games/Path of Exile/'

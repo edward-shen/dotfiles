@@ -127,7 +127,7 @@ installgroup NET networkmanager networkmanager-openvpn network-manager-applet \
   openvpn
 installgroup TOOLS powertop nmap neofetch htop tree stow p7zip xclip openssh \
   neovim bat
-installgroup TEX pandoc texlive-most texstudio
+installgroup TEX texlive-most 
 installgroup SHELL zsh oh-my-zsh-git zsh-syntax-highlighting zsh-theme-powerlevel10k-git
 installgroup FUN cowsay fortune-mod wtf thefuck
 
@@ -151,7 +151,7 @@ installgroup JAVA openjdk8-doc openjdk8-src jdk8-openjdk \
   intellij-idea-ue-bundled-jre
 installgroup JS nodejs yarn nvm
 installgroup PY python # No need for pip, python3 comes with pip
-installgroup GOOGLELANG dart go
+installgroup RUST rust
 
 # Packages that often break; installed in section n+1
 # wget and xdg-utils are an opt (but not really) dep of discord.

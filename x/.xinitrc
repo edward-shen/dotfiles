@@ -1,14 +1,6 @@
 #!/usr/bin/env sh
 
-feh --bg-scale --no-fehbg ~/.bg.png &
-xss-lock -- betterlockscreen -l blur &
-dunst &
-picom &
-osu-tablet
-libinput-gestures &
-setxkbmap -option compose:rctrl
-eval $(ssh-agent) &
-exec i3
+~/.screenlayout/right_vert.sh
 
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
@@ -32,3 +24,14 @@ fi
 if [ -f "$usermodmap" ]; then
     xmodmap "$usermodmap"
 fi
+
+feh --bg-fill --no-fehbg ~/.bg.png &
+xss-lock -- betterlockscreen -l blur &
+dunst &
+picom &
+pasystray &
+nm-applet &
+osu-tablet
+setxkbmap -option compose:rctrl
+eval $(ssh-agent) &
+exec i3

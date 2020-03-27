@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+discord & disown
+slack & disown
+riot-desktop & disown
+signal-desktop & disown
