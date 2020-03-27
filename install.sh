@@ -120,7 +120,8 @@ The following line has an incorrect number of parameters:
 }
 
 # CLI Packages
-installgroup CORE linux-headers acpi ntp reflector-timer
+installgroup CORE linux-headers acpi ntp reflector-timer man-db man-pages less \
+  dhcpcd diffutils perl
 installgroup AUDIO pulseaudio pulseaudio-alsa alsa-utils pavucontrol \
   pulseaudio-bluetooth pulseaudio-jack qjackctl
 installgroup NET networkmanager networkmanager-openvpn network-manager-applet \
